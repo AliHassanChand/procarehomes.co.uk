@@ -42,13 +42,20 @@ export default function Footer({ onNavigate }: { onNavigate: (id: string) => voi
               Governance & Map
             </h4>
             <ul className="space-y-2 text-slate-400">
-              {["about", "model-of-care", "services", "property", "leadership", "governance"].map((item) => (
-                <li key={item}>
+              {[
+                { id: "about", name: "About PRO Care" },
+                { id: "model-of-care", name: "MDT Care Model" },
+                { id: "services-hub", name: "Specialist Services" },
+                { id: "property", name: "6 Flags House Showcase" },
+                { id: "leadership", name: "Executive Leadership" },
+                { id: "governance", name: "CQC Quality & Governance" }
+              ].map((item) => (
+                <li key={item.id}>
                   <button
-                    onClick={() => onNavigate(item)}
-                    className="hover:text-premium-gold transition duration-150 capitalize text-left text-[11px] cursor-pointer"
+                    onClick={() => onNavigate(item.id)}
+                    className="hover:text-premium-gold transition duration-150 text-left text-[11px] cursor-pointer"
                   >
-                    • {item.replace(/-/g, " ")}
+                    • {item.name}
                   </button>
                 </li>
               ))}
@@ -61,13 +68,18 @@ export default function Footer({ onNavigate }: { onNavigate: (id: string) => voi
               Systems & Careers
             </h4>
             <ul className="space-y-2 text-slate-400">
-              {["digital", "careers", "community", "contact"].map((item) => (
-                <li key={item}>
+              {[
+                { id: "referrals", name: "Secure Referrals & Placements" },
+                { id: "policies", name: "Policies & Standards Hub" },
+                { id: "careers", name: "Values Recruitment" },
+                { id: "contact", name: "Professional Contacts" }
+              ].map((item) => (
+                <li key={item.id}>
                   <button
-                    onClick={() => onNavigate(item)}
-                    className="hover:text-premium-gold transition duration-150 capitalize text-left text-[11px] cursor-pointer"
+                    onClick={() => onNavigate(item.id)}
+                    className="hover:text-premium-gold transition duration-150 text-left text-[11px] cursor-pointer"
                   >
-                    • {item.replace(/-/g, " ")}
+                    • {item.name}
                   </button>
                 </li>
               ))}

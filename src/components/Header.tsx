@@ -73,40 +73,40 @@ export default function Header({ onNavigate, activeSection }: HeaderProps) {
       title: "Learning Disabilities",
       desc: "Holistic, sensory-optimized support pathways designed to foster autonomous living, active co-production and self-care milestone gains.",
       icon: Award,
-      href: "services",
+      href: "services-learning-disabilities",
       badge: "CQC Safe Goal"
     },
     {
       title: "Autism Support",
       desc: "Dedicated neuro-affirming environments styled to lower anxiety, optimize sensory trigger schedules, and avoid systemic overload crises.",
       icon: Fingerprint,
-      href: "services",
+      href: "services-autism-support",
       badge: "Low Arousal"
     },
     {
       title: "Mental Health Pathways",
       desc: "Compassionate, dual-diagnosis and trauma-informed stability support for complex clinical presentations transitioning from institutional wards.",
       icon: Activity,
-      href: "services"
+      href: "services-mental-health-support"
     },
     {
       title: "Positive Behaviour Support",
-      desc: "Our gold-standard clinical model guided by Multidisciplinary Teams (MDT) to systematic remove restrictive practices and enhance quality of life.",
+      desc: "Our gold-standard clinical model guided by Multidisciplinary Teams (MDT) to systematically remove restrictive practices and enhance quality of life.",
       icon: UserCheck,
-      href: "model-of-care",
+      href: "services-positive-behaviour-support",
       badge: "Lead Clinical"
     },
     {
       title: "Residential Care Excellence",
       desc: "Premium, dignified placement environments at 6 Flags House with private ensuite bedrooms and personalized sensory safe hubs.",
       icon: Home,
-      href: "property"
+      href: "services-residential-support"
     },
     {
-      title: "Community Integration",
-      desc: "Structured independent travel training, weekly local high street shopping, customized micro-employment, and college-accredited courses.",
+      title: "Independent Living",
+      desc: "Structured independent travel training, daily living practice cooking, budgeting, hygiene, and domestic skill graduation.",
       icon: MapPin,
-      href: "community"
+      href: "services-independent-living"
     }
   ];
 
@@ -115,34 +115,40 @@ export default function Header({ onNavigate, activeSection }: HeaderProps) {
       title: "Trauma-Informed Care",
       desc: "Prioritizing psychological safety and trauma awareness to understand behavioral antecedents without coercive intervention.",
       icon: HeartHandshake,
-      badge: "PIE Framework"
+      badge: "PIE Framework",
+      href: "model-of-care"
     },
     {
       title: "PBS Clinical Framework",
       desc: "Underpinned by functional behavior assessments, meticulous trigger logs, and continuous positive reinforcement standards.",
       icon: ShieldCheck,
-      badge: "CQC Approved"
+      badge: "CQC Approved",
+      href: "services-positive-behaviour-support"
     },
     {
       title: "Person-Centred Routines",
       desc: "Every resident co-creates their own weekly layout, choice framework, and leisure schedules with their dedicated support keyworker.",
-      icon: Sparkles
+      icon: Sparkles,
+      href: "model-of-care"
     },
     {
       title: "Psychologically Informed Environments",
       desc: "Architectural choices, calming neutral colors, soundproofing, and custom layouts tailored to support psychological stability.",
-      icon: Home
+      icon: Home,
+      href: "model-of-care"
     },
     {
       title: "Positive Risk-Taking",
       desc: "Enabling residents to grasp real-world independence milestone goals through careful multi-agency risk assessments and frameworks.",
-      icon: ChevronRight
+      icon: ChevronRight,
+      href: "model-of-care"
     },
     {
       title: "Nourish Digital Scheduling",
       desc: "Proactive care management tool with live monitoring, automated audits, and 100% transparent tracking for clinical commissioners.",
       icon: FileText,
-      badge: "Digital First"
+      badge: "Digital First",
+      href: "digital"
     }
   ];
 
@@ -151,45 +157,54 @@ export default function Header({ onNavigate, activeSection }: HeaderProps) {
       title: "CQC Standards alignment",
       desc: "Uncompromising compliance benchmarks targeting outstanding Safe, Effective, Caring, Responsive and Well-Led lines of inquiry.",
       icon: ShieldCheck,
-      badge: "CQC Compliant"
+      badge: "CQC Compliant",
+      href: "governance"
     },
     {
       title: "Safeguarding Policy Framework",
       desc: "Strict multi-tiered incident tracking, immediate commissioner alerts, and transparent statutory safeguarding reporting compliance.",
       icon: Lock,
-      badge: "Zero Tolerance"
+      badge: "Zero Tolerance",
+      href: "policies"
     },
     {
       title: "Quality Assurance System",
       desc: "Systematic monthly compliance audits, external clinical consults, feedback analytics, and digital validation protocols.",
-      icon: Scale
+      icon: Scale,
+      href: "governance"
     },
     {
       title: "Clinical Board Leadership",
       desc: "Spearheaded by strategic director Salman Muhammad and MDT consultancy director Boston Murray to assure evidence-based practice.",
-      icon: Users
+      icon: leadershipItemsLink()
     },
     {
       title: "Transparent Complaints Handling",
       desc: "Empowering residents, families, and professionals via clear regulatory policies to resolve challenges within 48 business hours.",
-      icon: MessageSquare
+      icon: MessageSquare,
+      href: "policies"
     },
     {
       title: "Digital Security Protocols",
       desc: "State-of-the-art 256-bit credentials, NHSmail-compliant gateways, fully audited HIPAA/Nourish databases safeguarding client identity.",
-      icon: Lock
+      icon: Lock,
+      href: "policies"
     }
   ];
 
+  function leadershipItemsLink() {
+    return Users;
+  }
+
   const secondaryNavItems = [
     { label: "6 Flags House", id: "property" },
-    { label: "Digital Care Logs", id: "digital" },
-    { label: "Community Integration", id: "community" },
-    { label: "Clinical Leadership", id: "leadership" },
+    { label: "Specialist Services", id: "services-hub" },
+    { label: "Support Model", id: "model-of-care" },
+    { label: "Executive Leadership", id: "leadership" },
     { label: "CQC Quality & Governance", id: "governance" },
-    { label: "Secure Placements Referral", id: "contact" },
-    { label: "Continuous Feedback Loop", id: "feedback" },
-    { label: "Careers & Safeguarded Hiring", id: "careers" }
+    { label: "Secure Referrals Portal", id: "referrals" },
+    { label: "Policies & Standards", id: "policies" },
+    { label: "Careers Portal", id: "careers" }
   ];
 
   return (
@@ -391,7 +406,7 @@ export default function Header({ onNavigate, activeSection }: HeaderProps) {
             
             <button
               id="executive-btn-referral"
-              onClick={() => onNavigate("contact")}
+              onClick={() => onNavigate("referrals")}
               className="flex items-center space-x-2 px-5 py-2.5 bg-gov-blue hover:bg-calm-blue text-white rounded-xl text-xs font-extrabold transition-all duration-200 shadow-md shadow-gov-blue/10 transform active:scale-95 border-b-2 border-premium-gold cursor-pointer"
             >
               <CalendarRange className="w-4 h-4 flex-shrink-0" />
@@ -402,7 +417,7 @@ export default function Header({ onNavigate, activeSection }: HeaderProps) {
           {/* Mobile responsive toggle */}
           <div className="flex lg:hidden items-center space-x-2">
             <button
-              onClick={() => onNavigate("contact")}
+              onClick={() => onNavigate("referrals")}
               className="px-3.5 py-2 bg-gov-blue text-white rounded-xl text-xs font-extrabold shadow-sm active:scale-95 transition"
             >
               Referral
