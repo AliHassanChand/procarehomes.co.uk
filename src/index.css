@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-gov-blue: #1E3A5F;
+  --color-calm-blue: #4B6B8A;
+  --color-care-green: #5E8B7E;
+  --color-warm-bg: #F7F8FA;
+  --color-text-primary: #1B1F24;
+  --color-text-secondary: #5B6572;
+  --color-premium-gold: #C6A87D;
+  
+  --color-brand-success: #4C9B6D;
+  --color-brand-error: #C65B5B;
+  --color-brand-warning: #D8A34D;
+}
+
+/* Custom Scrollbar for modern premium feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F7F8FA;
+}
+::-webkit-scrollbar-thumb {
+  background: #C6A87D70;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #4B6B8A80;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  scroll-margin-top: 140px; /* Account for the executive navbar + sub-nav */
+}
+
+body {
+  background-color: #F7F8FA;
+  color: #1B1F24;
+}

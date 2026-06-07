@@ -1,0 +1,772 @@
+import React, { useState, useEffect, useRef } from "react";
+import { 
+  ShieldCheck, 
+  CalendarRange, 
+  ChevronDown, 
+  ChevronRight, 
+  Menu, 
+  X, 
+  Users, 
+  Home, 
+  Activity, 
+  Sparkles, 
+  Award, 
+  Briefcase, 
+  Lock, 
+  Scale, 
+  FileText, 
+  MapPin, 
+  HeartHandshake, 
+  BookOpen, 
+  UserCheck, 
+  CheckCircle,
+  HelpCircle,
+  MessageSquare,
+  ThumbsUp,
+  Fingerprint
+} from "lucide-react";
+
+interface HeaderProps {
+  onNavigate: (sectionId: string) => void;
+  activeSection: string;
+}
+
+export default function Header({ onNavigate, activeSection }: HeaderProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeMegaMenu, setActiveMegaMenu] = useState<"services" | "approach" | "governance" | null>(null);
+  
+  // Mobile accordion states
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileApproachOpen, setMobileApproachOpen] = useState(false);
+  const [mobileGovernanceOpen, setMobileGovernanceOpen] = useState(false);
+
+  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+    };
+  }, []);
+
+  const handleMenuHover = (menu: "services" | "approach" | "governance" | null) => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
+    if (menu) {
+      setActiveMegaMenu(menu);
+    } else {
+      hoverTimeoutRef.current = setTimeout(() => {
+        setActiveMegaMenu(null);
+      }, 150);
+    }
+  };
+
+  const servicesItems = [
+    {
+      title: "Learning Disabilities",
+      desc: "Holistic, sensory-optimized support pathways designed to foster autonomous living, active co-production and self-care milestone gains.",
+      icon: Award,
+      href: "services",
+      badge: "CQC Safe Goal"
+    },
+    {
+      title: "Autism Support",
+      desc: "Dedicated neuro-affirming environments styled to lower anxiety, optimize sensory trigger schedules, and avoid systemic overload crises.",
+      icon: Fingerprint,
+      href: "services",
+      badge: "Low Arousal"
+    },
+    {
+      title: "Mental Health Pathways",
+      desc: "Compassionate, dual-diagnosis and trauma-informed stability support for complex clinical presentations transitioning from institutional wards.",
+      icon: Activity,
+      href: "services"
+    },
+    {
+      title: "Positive Behaviour Support",
+      desc: "Our gold-standard clinical model guided by Multidisciplinary Teams (MDT) to systematic remove restrictive practices and enhance quality of life.",
+      icon: UserCheck,
+      href: "model-of-care",
+      badge: "Lead Clinical"
+    },
+    {
+      title: "Residential Care Excellence",
+      desc: "Premium, dignified placement environments at 6 Flags House with private ensuite bedrooms and personalized sensory safe hubs.",
+      icon: Home,
+      href: "property"
+    },
+    {
+      title: "Community Integration",
+      desc: "Structured independent travel training, weekly local high street shopping, customized micro-employment, and college-accredited courses.",
+      icon: MapPin,
+      href: "community"
+    }
+  ];
+
+  const approachItems = [
+    {
+      title: "Trauma-Informed Care",
+      desc: "Prioritizing psychological safety and trauma awareness to understand behavioral antecedents without coercive intervention.",
+      icon: HeartHandshake,
+      badge: "PIE Framework"
+    },
+    {
+      title: "PBS Clinical Framework",
+      desc: "Underpinned by functional behavior assessments, meticulous trigger logs, and continuous positive reinforcement standards.",
+      icon: ShieldCheck,
+      badge: "CQC Approved"
+    },
+    {
+      title: "Person-Centred Routines",
+      desc: "Every resident co-creates their own weekly layout, choice framework, and leisure schedules with their dedicated support keyworker.",
+      icon: Sparkles
+    },
+    {
+      title: "Psychologically Informed Environments",
+      desc: "Architectural choices, calming neutral colors, soundproofing, and custom layouts tailored to support psychological stability.",
+      icon: Home
+    },
+    {
+      title: "Positive Risk-Taking",
+      desc: "Enabling residents to grasp real-world independence milestone goals through careful multi-agency risk assessments and frameworks.",
+      icon: ChevronRight
+    },
+    {
+      title: "Nourish Digital Scheduling",
+      desc: "Proactive care management tool with live monitoring, automated audits, and 100% transparent tracking for clinical commissioners.",
+      icon: FileText,
+      badge: "Digital First"
+    }
+  ];
+
+  const governanceItems = [
+    {
+      title: "CQC Standards alignment",
+      desc: "Uncompromising compliance benchmarks targeting outstanding Safe, Effective, Caring, Responsive and Well-Led lines of inquiry.",
+      icon: ShieldCheck,
+      badge: "CQC Compliant"
+    },
+    {
+      title: "Safeguarding Policy Framework",
+      desc: "Strict multi-tiered incident tracking, immediate commissioner alerts, and transparent statutory safeguarding reporting compliance.",
+      icon: Lock,
+      badge: "Zero Tolerance"
+    },
+    {
+      title: "Quality Assurance System",
+      desc: "Systematic monthly compliance audits, external clinical consults, feedback analytics, and digital validation protocols.",
+      icon: Scale
+    },
+    {
+      title: "Clinical Board Leadership",
+      desc: "Spearheaded by strategic director Salman Muhammad and MDT consultancy director Boston Murray to assure evidence-based practice.",
+      icon: Users
+    },
+    {
+      title: "Transparent Complaints Handling",
+      desc: "Empowering residents, families, and professionals via clear regulatory policies to resolve challenges within 48 business hours.",
+      icon: MessageSquare
+    },
+    {
+      title: "Digital Security Protocols",
+      desc: "State-of-the-art 256-bit credentials, NHSmail-compliant gateways, fully audited HIPAA/Nourish databases safeguarding client identity.",
+      icon: Lock
+    }
+  ];
+
+  const secondaryNavItems = [
+    { label: "6 Flags House", id: "property" },
+    { label: "Digital Care Logs", id: "digital" },
+    { label: "Community Integration", id: "community" },
+    { label: "Clinical Leadership", id: "leadership" },
+    { label: "CQC Quality & Governance", id: "governance" },
+    { label: "Secure Placements Referral", id: "contact" },
+    { label: "Continuous Feedback Loop", id: "feedback" },
+    { label: "Careers & Safeguarded Hiring", id: "careers" }
+  ];
+
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 select-none animate-fadeIn">
+      
+      {/* 1. PREMIUM TOPBAR: Slim, high-performance healthcare notification bar */}
+      <div 
+        id="premium-topbar" 
+        className="relative bg-gradient-to-r from-care-green via-[#7DB6A3] to-gov-blue text-white px-4 md:px-8 py-2 md:py-2.5 flex items-center justify-between text-[11px] font-sans shadow-inner border-b border-white/10 overflow-hidden"
+      >
+        {/* Glow visual backdrops */}
+        <div className="absolute inset-0 bg-white/5 backdrop-blur-[1px] -z-10" />
+        <div className="absolute top-0 right-1/4 w-40 h-40 bg-white/10 rounded-full blur-xl animate-pulse" />
+
+        {/* Info label left */}
+        <div className="flex items-center space-x-2">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#EAF7F4] opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#C7E6DC]"></span>
+          </span>
+          <span className="tracking-wide uppercase font-bold text-[10px] text-white opacity-95 flex items-center space-x-1 font-mono">
+            <span>GOVERNANCE-LED SPECIALIST CARE</span>
+            <span className="hidden sm:inline-block">•</span>
+            <span className="hidden sm:inline-block text-white">PRO-CARE HOMES LTD</span>
+          </span>
+        </div>
+
+        {/* Core clinical text center */}
+        <span className="hidden lg:inline-block font-sans font-semibold text-center tracking-tight text-[#EAF7F4]">
+          ⭐ Providing Safe, Compassionate, Multidisciplinary Teams (MDT) and Fully CQC-Aligned Supported Placements
+        </span>
+
+        {/* Regulatory/Contact indicators right */}
+        <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-1 font-mono font-bold text-[10px] text-white">
+            <ShieldCheck className="w-3.5 h-3.5 text-[#C7E6DC] flex-shrink-0" />
+            <span className="tracking-wide">CQC REGISTRATION ACTIVE</span>
+          </div>
+          <span className="hidden md:inline-block text-white/40">|</span>
+          <a 
+            href="#contact" 
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigate("contact");
+            }}
+            className="hover:text-premium-gold transition-colors font-semibold text-white/95"
+          >
+            NHSmail Referrals Gateway →
+          </a>
+        </div>
+      </div>
+
+      {/* 2. PRIMARY EXECUTIVE NAVBAR: Floating layered header with glassmorphic backing */}
+      <div 
+        id="primary-executive-navbar"
+        className={`w-full transition-all duration-300 ${
+          isScrolled 
+            ? "bg-white/95 backdrop-blur-md border-b border-gov-blue/10 shadow-lg py-2.5 px-4 md:px-8" 
+            : "bg-white/90 backdrop-blur-sm border-b border-gov-blue/5 py-4 px-4 md:px-8"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          
+          {/* Brand/Logo Section Left */}
+          <div 
+            onClick={() => onNavigate("hero")} 
+            className="flex items-center space-x-2.5 cursor-pointer group flex-shrink-0"
+          >
+            <div className="w-10 h-10 bg-gov-blue text-white rounded-xl flex items-center justify-center shadow-lg shadow-gov-blue/20 group-hover:bg-calm-blue transition-colors relative overflow-hidden">
+              <ShieldCheck className="w-5.5 h-5.5 z-10" />
+              <div className="absolute inset-x-0 bottom-0 h-1/2 bg-care-green" />
+            </div>
+            <div>
+              <span className="text-xl font-extrabold text-gov-blue tracking-tight block font-sans">
+                PRO <span className="text-care-green">Care Homes</span>
+              </span>
+              <span className="text-[9px] font-mono tracking-widest uppercase text-premium-gold font-bold block -mt-1">
+                LTD • CLINICAL GOVERNANCE & SAFEGUARDS
+              </span>
+            </div>
+          </div>
+
+          {/* Core Navigation Center */}
+          <nav className="hidden lg:flex items-center space-x-1.5 z-50">
+            
+            {/* Home trigger */}
+            <button
+              onClick={() => onNavigate("hero")}
+              className={`px-3.5 py-2 rounded-lg text-xs font-bold tracking-tight transition-all duration-200 ${
+                activeSection === "hero"
+                  ? "bg-gov-blue/[0.04] text-gov-blue border-b-2 border-premium-gold"
+                  : "text-text-secondary hover:text-gov-blue hover:bg-gov-blue/[0.02]"
+              }`}
+            >
+              Home
+            </button>
+
+            {/* About trigger */}
+            <button
+              onClick={() => onNavigate("about")}
+              className={`px-3.5 py-2 rounded-lg text-xs font-bold tracking-tight transition-all duration-200 ${
+                activeSection === "about"
+                  ? "bg-gov-blue/[0.04] text-gov-blue border-b-2 border-premium-gold"
+                  : "text-text-secondary hover:text-gov-blue hover:bg-gov-blue/[0.02]"
+              }`}
+            >
+              About PRO
+            </button>
+
+            {/* Services Dropdown (MEGA MENU TRIGGER) */}
+            <div 
+              className="relative inline-block"
+              onMouseEnter={() => handleMenuHover("services")}
+              onMouseLeave={() => handleMenuHover(null)}
+            >
+              <button
+                className={`flex items-center space-x-1 px-3.5 py-2 rounded-lg text-xs font-bold tracking-tight transition-all duration-200 ${
+                  activeMegaMenu === "services" || ["services", "property", "community"].includes(activeSection)
+                    ? "bg-gov-blue/[0.04] text-gov-blue border-b-2 border-premium-gold"
+                    : "text-text-secondary hover:text-gov-blue hover:bg-gov-blue/[0.02]"
+                }`}
+              >
+                <span>Care Specialties</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeMegaMenu === "services" ? "rotate-180" : ""}`} />
+              </button>
+            </div>
+
+            {/* Care Approach Dropdown (MEGA MENU TRIGGER) */}
+            <div 
+              className="relative inline-block"
+              onMouseEnter={() => handleMenuHover("approach")}
+              onMouseLeave={() => handleMenuHover(null)}
+            >
+              <button
+                className={`flex items-center space-x-1 px-3.5 py-2 rounded-lg text-xs font-bold tracking-tight transition-all duration-200 ${
+                  activeMegaMenu === "approach" || ["model-of-care", "digital"].includes(activeSection)
+                    ? "bg-gov-blue/[0.04] text-gov-blue border-b-2 border-premium-gold"
+                    : "text-text-secondary hover:text-gov-blue hover:bg-gov-blue/[0.02]"
+                }`}
+              >
+                <span>Our MDT Approach</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeMegaMenu === "approach" ? "rotate-180" : ""}`} />
+              </button>
+            </div>
+
+            {/* Governance Dropdown (MEGA MENU TRIGGER) */}
+            <div 
+              className="relative inline-block"
+              onMouseEnter={() => handleMenuHover("governance")}
+              onMouseLeave={() => handleMenuHover(null)}
+            >
+              <button
+                className={`flex items-center space-x-1 px-3.5 py-2 rounded-lg text-xs font-bold tracking-tight transition-all duration-200 ${
+                  activeMegaMenu === "governance" || ["governance", "feedback"].includes(activeSection)
+                    ? "bg-gov-blue/[0.04] text-gov-blue border-b-2 border-premium-gold"
+                    : "text-text-secondary hover:text-gov-blue hover:bg-gov-blue/[0.02]"
+                }`}
+              >
+                <span>Governance & Standards</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeMegaMenu === "governance" ? "rotate-180" : ""}`} />
+              </button>
+            </div>
+
+            {/* Careers trigger */}
+            <button
+              onClick={() => onNavigate("careers")}
+              className={`px-3.5 py-2 rounded-lg text-xs font-bold tracking-tight transition-all duration-200 ${
+                activeSection === "careers"
+                  ? "bg-gov-blue/[0.04] text-gov-blue border-b-2 border-premium-gold"
+                  : "text-text-secondary hover:text-gov-blue hover:bg-gov-blue/[0.02]"
+              }`}
+            >
+              Careers
+            </button>
+
+            {/* Contact trigger */}
+            <button
+              onClick={() => onNavigate("contact")}
+              className={`px-3.5 py-2 rounded-lg text-xs font-bold tracking-tight transition-all duration-200 ${
+                activeSection === "contact"
+                  ? "bg-gov-blue/[0.04] text-gov-blue border-b-2 border-premium-gold"
+                  : "text-text-secondary hover:text-gov-blue hover:bg-gov-blue/[0.02]"
+              }`}
+            >
+              Contact
+            </button>
+          </nav>
+
+          {/* Desktop Call to Actions Panel Right */}
+          <div className="hidden lg:flex items-center space-x-3 flex-shrink-0">
+            <button
+              id="executive-btn-careers"
+              onClick={() => onNavigate("careers")}
+              className="flex items-center space-x-1.5 px-3.5 py-2 border border-gov-blue/15 hover:border-premium-gold/40 rounded-xl text-xs font-bold text-calm-blue hover:text-gov-blue hover:bg-gov-blue/[0.02] transition-all duration-200"
+            >
+              <Users className="w-3.5 h-3.5" />
+              <span>Join As Support staff</span>
+            </button>
+            
+            <button
+              id="executive-btn-referral"
+              onClick={() => onNavigate("contact")}
+              className="flex items-center space-x-2 px-5 py-2.5 bg-gov-blue hover:bg-calm-blue text-white rounded-xl text-xs font-extrabold transition-all duration-200 shadow-md shadow-gov-blue/10 transform active:scale-95 border-b-2 border-premium-gold cursor-pointer"
+            >
+              <CalendarRange className="w-4 h-4 flex-shrink-0" />
+              <span>Make Secure Referral</span>
+            </button>
+          </div>
+
+          {/* Mobile responsive toggle */}
+          <div className="flex lg:hidden items-center space-x-2">
+            <button
+              onClick={() => onNavigate("contact")}
+              className="px-3.5 py-2 bg-gov-blue text-white rounded-xl text-xs font-extrabold shadow-sm active:scale-95 transition"
+            >
+              Referral
+            </button>
+            <button
+              id="mobile-drawer-trigger"
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2.5 rounded-xl text-text-secondary hover:text-gov-blue hover:bg-gov-blue/[0.04] transition-colors border border-gov-blue/5"
+            >
+              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      {/* 3. MEGA MENU FLOATING DROPDOWN RENDER CARDS (Desktop) */}
+      <div 
+        className={`absolute left-0 right-0 bg-white/95 backdrop-blur-md shadow-2xl border-b border-gov-blue/10 transition-all duration-250 z-40 ${
+          activeMegaMenu 
+            ? "opacity-100 translate-y-0 pointer-events-auto max-h-[85vh] overflow-y-auto" 
+            : "opacity-0 -translate-y-2 pointer-events-none max-h-0"
+        }`}
+        onMouseEnter={() => {
+          if (hoverTimeoutRef.current) {
+            clearTimeout(hoverTimeoutRef.current);
+            hoverTimeoutRef.current = null;
+          }
+        }}
+        onMouseLeave={() => handleMenuHover(null)}
+      >
+        <div className="max-w-7xl mx-auto px-8 py-8">
+          
+          {/* Services Menu block */}
+          {activeMegaMenu === "services" && (
+            <div className="space-y-6">
+              <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                <div className="space-y-1">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#5E8B7E] font-mono block">Specialist Residential Services</span>
+                  <h4 className="text-base font-extrabold text-gov-blue">Custom Care & Clinical Supported Living Packages</h4>
+                </div>
+                <button 
+                  onClick={() => {
+                    onNavigate("services");
+                    setActiveMegaMenu(null);
+                  }}
+                  className="text-xs font-bold text-gov-blue hover:text-care-green flex items-center space-x-1 hover:underline"
+                >
+                  <span>Explore all active structures</span>
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {servicesItems.map((item, idx) => {
+                  const Icon = item.icon;
+                  return (
+                    <div 
+                      key={idx}
+                      onClick={() => {
+                        onNavigate(item.href);
+                        setActiveMegaMenu(null);
+                      }}
+                      className="group/item p-4.5 bg-slate-50/50 hover:bg-white rounded-2xl border border-slate-100 hover:border-care-green/20 hover:shadow-md transition-all duration-300 cursor-pointer"
+                    >
+                      <div className="flex items-start space-x-3.5">
+                        <span className="p-2.5 bg-gov-blue/[0.04] group-hover/item:bg-care-green/10 text-gov-blue group-hover/item:text-care-green rounded-xl transition-colors flex-shrink-0">
+                          <Icon className="w-5 h-5" />
+                        </span>
+                        <div className="space-y-1">
+                          <div className="flex items-center space-x-2">
+                            <h5 className="font-extrabold text-xs text-gov-blue group-hover/item:text-care-green transition-colors">{item.title}</h5>
+                            {item.badge && (
+                              <span className="px-2 py-0.5 bg-care-green/10 text-care-green text-[8px] font-bold rounded-full font-mono">
+                                {item.badge}
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-[10px] text-text-secondary leading-relaxed line-clamp-3">{item.desc}</p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* Care Approach Menu block */}
+          {activeMegaMenu === "approach" && (
+            <div className="space-y-6">
+              <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                <div className="space-y-1">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#5E8B7E] font-mono block">Clinical support philosophy</span>
+                  <h4 className="text-base font-extrabold text-gov-blue">Multidisciplinary Team (MDT) Active Frameworks</h4>
+                </div>
+                <button 
+                  onClick={() => {
+                    onNavigate("model-of-care");
+                    setActiveMegaMenu(null);
+                  }}
+                  className="text-xs font-bold text-gov-blue hover:text-care-green flex items-center space-x-1 hover:underline"
+                >
+                  <span>Analyse Support Slices</span>
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {approachItems.map((item, idx) => {
+                  const Icon = item.icon;
+                  return (
+                    <div 
+                      key={idx}
+                      onClick={() => {
+                        onNavigate(item.badge === "Digital First" ? "digital" : "model-of-care");
+                        setActiveMegaMenu(null);
+                      }}
+                      className="group/item p-4.5 bg-slate-50/50 hover:bg-white rounded-2xl border border-slate-100 hover:border-[#5E8B7E]/20 hover:shadow-md transition-all duration-300 cursor-pointer"
+                    >
+                      <div className="flex items-start space-x-3.5">
+                        <span className="p-2.5 bg-gov-blue/[0.04] group-hover/item:bg-care-green/10 text-gov-blue group-hover/item:text-care-green rounded-xl transition-colors flex-shrink-0">
+                          <Icon className="w-5 h-5" />
+                        </span>
+                        <div className="space-y-1">
+                          <div className="flex items-center space-x-2">
+                            <h5 className="font-extrabold text-xs text-gov-blue group-hover/item:text-care-green transition-colors">{item.title}</h5>
+                            {item.badge && (
+                              <span className="px-2 py-0.5 bg-gov-blue/5 text-gov-blue text-[8px] font-bold rounded-full font-mono">
+                                {item.badge}
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-[10px] text-text-secondary leading-relaxed line-clamp-3">{item.desc}</p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* Governance Menu block */}
+          {activeMegaMenu === "governance" && (
+            <div className="space-y-6">
+              <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                <div className="space-y-1">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#5E8B7E] font-mono block">Uncompromising statutory safeguards</span>
+                  <h4 className="text-base font-extrabold text-gov-blue">Clinical Governance Board & Quality Management Systems</h4>
+                </div>
+                <button 
+                  onClick={() => {
+                    onNavigate("governance");
+                    setActiveMegaMenu(null);
+                  }}
+                  className="text-xs font-bold text-gov-blue hover:text-care-green flex items-center space-x-1 hover:underline"
+                >
+                  <span>Verify Audit Compliance Metrics</span>
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {governanceItems.map((item, idx) => {
+                  const Icon = item.icon;
+                  return (
+                    <div 
+                      key={idx}
+                      onClick={() => {
+                        onNavigate(item.title.includes("Complaints") ? "feedback" : "governance");
+                        setActiveMegaMenu(null);
+                      }}
+                      className="group/item p-4.5 bg-slate-50/50 hover:bg-white rounded-2xl border border-slate-100 hover:border-premium-gold/30 hover:shadow-md transition-all duration-300 cursor-pointer"
+                    >
+                      <div className="flex items-start space-x-3.5">
+                        <span className="p-2.5 bg-gov-blue/[0.04] group-hover/item:bg-premium-gold/10 text-gov-blue group-hover/item:text-premium-gold rounded-xl transition-colors flex-shrink-0">
+                          <Icon className="w-5 h-5" />
+                        </span>
+                        <div className="space-y-1">
+                          <div className="flex items-center space-x-2">
+                            <h5 className="font-extrabold text-xs text-gov-blue group-hover/item:text-premium-gold transition-colors">{item.title}</h5>
+                            {item.badge && (
+                              <span className="px-2 py-0.5 bg-brand-error/10 text-brand-error text-[8px] font-bold rounded-full font-mono">
+                                {item.badge}
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-[10px] text-text-secondary leading-relaxed line-clamp-3">{item.desc}</p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+        </div>
+      </div>
+
+      {/* 4. SECONDARY INTELLIGENT NAVIGATION (Sub-nav for deep structural shortcuts) */}
+      <div 
+        id="secondary-intelligent-nav"
+        className="w-full bg-[#FFFFFF]/90 backdrop-blur-md border-b border-gov-blue/10 shadow-xs py-2 px-4 select-none relative z-30"
+      >
+        <div className="max-w-7xl mx-auto flex items-center space-x-2 overflow-x-auto scrollbar-none py-1 flex-nowrap">
+          <span className="text-[9px] uppercase font-bold tracking-widest text-[#5E8B7E] font-mono mr-2.5 flex-shrink-0 hidden md:block">
+            DIRECT PIPELINES:
+          </span>
+          <div className="flex items-center space-x-1.5 md:space-x-2 flex-nowrap">
+            {secondaryNavItems.map((pill, idx) => (
+              <button
+                key={idx}
+                onClick={() => onNavigate(pill.id)}
+                className="px-3.5 py-1.5 bg-[#F7F8FA] hover:bg-gov-blue/[0.03] text-gov-blue text-[10px] font-bold rounded-full border border-gov-blue/5 hover:border-premium-gold/30 transition duration-200 cursor-pointer flex-shrink-0"
+              >
+                {pill.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* 5. MOBILE ACCORDION DRAWER LAYOUT PANEL */}
+      {isOpen && (
+        <div 
+          id="mobile-nav-panel" 
+          className="lg:hidden absolute top-full left-0 right-0 bg-white border-b-2 border-gov-blue/15 shadow-2xl py-4 px-5 space-y-4 animate-fadeIn max-h-[85vh] overflow-y-auto w-full z-50 text-slate-800"
+        >
+          {/* General non-dropdown pages */}
+          <div className="space-y-1">
+            <button
+              onClick={() => { onNavigate("hero"); setIsOpen(false); }}
+              className="w-full text-left py-2.5 px-3 rounded-lg text-xs font-bold text-gov-blue hover:bg-slate-50 transition flex items-center justify-between"
+            >
+              <span className="flex items-center space-x-2">
+                <Home className="w-4 h-4 text-care-green" />
+                <span>Home Direct Dashboard</span>
+              </span>
+              <ChevronRight className="w-3.5 h-3.5" />
+            </button>
+
+            <button
+              onClick={() => { onNavigate("about"); setIsOpen(false); }}
+              className="w-full text-left py-2.5 px-3 rounded-lg text-xs font-bold text-gov-blue hover:bg-slate-50 transition flex items-center justify-between"
+            >
+              <span className="flex items-center space-x-2">
+                <Users className="w-4 h-4 text-care-green" />
+                <span>About PRO Care Homes</span>
+              </span>
+              <ChevronRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
+
+          {/* Accordion Group: Specialties */}
+          <div className="border-t border-slate-100 pt-3">
+            <button
+              onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+              className="w-full flex items-center justify-between py-2.5 px-3 text-xs font-extrabold text-gov-blue rounded-lg bg-slate-50/50"
+            >
+              <span className="flex items-center space-x-2">
+                <Briefcase className="w-4 h-4 text-[#5E8B7E]" />
+                <span>Our Specialties</span>
+              </span>
+              <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileServicesOpen ? "rotate-180" : ""}`} />
+            </button>
+            
+            {mobileServicesOpen && (
+              <div className="pl-6 pr-2 py-1.5 space-y-2.5 animate-scaleUp">
+                {servicesItems.map((item, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => { onNavigate(item.href); setIsOpen(false); }}
+                    className="w-full text-left text-[11px] font-bold text-text-secondary hover:text-gov-blue flex items-center space-x-2"
+                  >
+                    <span>• {item.title}</span>
+                    {item.badge && (
+                      <span className="px-1.5 py-0.2 bg-care-green/10 text-care-green text-[7px] font-mono rounded">
+                        {item.badge}
+                      </span>
+                    )}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Accordion Group: Care Approach */}
+          <div className="pt-1">
+            <button
+              onClick={() => setMobileApproachOpen(!mobileApproachOpen)}
+              className="w-full flex items-center justify-between py-2.5 px-3 text-xs font-extrabold text-gov-blue rounded-lg bg-slate-50/50"
+            >
+              <span className="flex items-center space-x-2">
+                <Award className="w-4 h-4 text-[#5E8B7E]" />
+                <span>MDT Support Pillars</span>
+              </span>
+              <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileApproachOpen ? "rotate-180" : ""}`} />
+            </button>
+            
+            {mobileApproachOpen && (
+              <div className="pl-6 pr-2 py-1.5 space-y-2.5 animate-scaleUp">
+                {approachItems.map((item, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => { onNavigate(item.badge === "Digital First" ? "digital" : "model-of-care"); setIsOpen(false); }}
+                    className="w-full text-left text-[11px] font-bold text-text-secondary hover:text-gov-blue flex items-center space-x-2"
+                  >
+                    <span>• {item.title}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Accordion Group: Governance */}
+          <div className="pt-1">
+            <button
+              onClick={() => setMobileGovernanceOpen(!mobileGovernanceOpen)}
+              className="w-full flex items-center justify-between py-2.5 px-3 text-xs font-extrabold text-gov-blue rounded-lg bg-slate-50/50"
+            >
+              <span className="flex items-center space-x-2">
+                <ShieldCheck className="w-4 h-4 text-premium-gold" />
+                <span>Clinical Governance</span>
+              </span>
+              <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileGovernanceOpen ? "rotate-180" : ""}`} />
+            </button>
+            
+            {mobileGovernanceOpen && (
+              <div className="pl-6 pr-2 py-1.5 space-y-2.5 animate-scaleUp">
+                {governanceItems.map((item, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => { onNavigate(item.title.includes("Complaints") ? "feedback" : "governance"); setIsOpen(false); }}
+                    className="w-full text-left text-[11px] font-bold text-text-secondary hover:text-gov-blue flex items-center space-x-2"
+                  >
+                    <span>• {item.title}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Bottom fixed callouts inside mobile navigation panel */}
+          <div className="border-t border-slate-100 pt-4 flex flex-col space-y-2.5">
+            <button
+              onClick={() => { onNavigate("careers"); setIsOpen(false); }}
+              className="w-full py-3 flex items-center justify-center space-x-2 border border-gov-blue/10 hover:border-gov-blue/25 text-gov-blue font-bold text-xs rounded-xl transition bg-slate-50"
+            >
+              <Users className="w-4 h-4" />
+              <span>Careers Opportunities</span>
+            </button>
+            <button
+              onClick={() => { onNavigate("contact"); setIsOpen(false); }}
+              className="w-full py-3 flex items-center justify-center space-x-2 bg-gov-blue hover:bg-calm-blue text-white font-extrabold text-xs rounded-xl shadow-md cursor-pointer"
+            >
+              <CalendarRange className="w-4 h-4" />
+              <span>Submit Secure Placement Referral</span>
+            </button>
+          </div>
+        </div>
+      )}
+
+    </header>
+  );
+}
