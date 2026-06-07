@@ -17,6 +17,7 @@ import {
 
 export default function Referrals() {
   const [referralFeedback, setReferralFeedback] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
   const [referralForm, setReferralForm] = useState({
     commissionerName: "",
     authority: "",
@@ -34,9 +35,10 @@ export default function Referrals() {
   const handleReferralSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!referralForm.commissionerName || !referralForm.email || !referralForm.serviceUserName) {
-      alert("Please fill in high priority validation fields (Your Name, email, and Resident Name).");
+      setFormError("Please fill in high priority validation fields (Your Name, email, and Resident Name).");
       return;
     }
+    setFormError(null);
     setReferralFeedback(true);
   };
 
@@ -347,6 +349,12 @@ export default function Referrals() {
                     className="w-full p-2.5 bg-warm-bg border border-slate-205 rounded-lg text-slate-800 font-sans"
                   />
                 </div>
+
+                {formError && (
+                  <div className="p-3 bg-red-50 border border-red-200 text-red-700 text-xs rounded-xl font-medium animate-shake">
+                    ⚠️ {formError}
+                  </div>
+                )}
 
                 <button
                   type="submit"

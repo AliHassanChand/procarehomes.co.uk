@@ -16,6 +16,7 @@ import {
 export default function Policies() {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
+  const [verificationStatus, setVerificationStatus] = useState<string | null>(null);
 
   const policyItems = [
     {
@@ -236,8 +237,8 @@ export default function Policies() {
                   Fully Verified
                 </span>
                 <button 
-                  onClick={() => alert(`SOP Document verification successful: ${p.title} is fully verified and compliant.`)}
-                  className="flex items-center space-x-1 text-xs text-[#5E8B7E] hover:text-gov-blue font-bold px-3 py-1.5 rounded-lg hover:bg-[#5E8B7E]/5 transition"
+                  onClick={() => setVerificationStatus(`SOP Document verification successful: ${p.title} is fully verified and compliant.`)}
+                  className="flex items-center space-x-1 text-xs text-[#5E8B7E] hover:text-gov-blue font-bold px-3 py-1.5 rounded-lg hover:bg-[#5E8B7E]/5 transition cursor-pointer"
                 >
                   <Download className="w-4 h-4" />
                   <span>Interactive Verification</span>
@@ -263,6 +264,25 @@ export default function Policies() {
             </p>
           </div>
         </section>
+
+        {/* Verification Success Toast */}
+        {verificationStatus && (
+          <div className="fixed bottom-6 right-6 z-50 max-w-sm bg-slate-900 text-white rounded-2xl shadow-2xl p-4 border border-emerald-500/20 flex items-start space-x-3.5 animate-fadeIn">
+            <span className="p-2 bg-emerald-500/10 text-emerald-400 rounded-xl mt-0.5">
+              <CheckCircle className="w-5 h-5" />
+            </span>
+            <div className="flex-1 space-y-1 text-xs">
+              <h5 className="font-extrabold text-white">SOP Verification Audit Pass</h5>
+              <p className="text-[11px] text-slate-300 leading-normal">{verificationStatus}</p>
+              <button 
+                onClick={() => setVerificationStatus(null)} 
+                className="text-[10px] text-emerald-400 hover:underline font-bold mt-1 block"
+              >
+                Acknowledge & Close
+              </button>
+            </div>
+          </div>
+        )}
 
       </div>
     </div>

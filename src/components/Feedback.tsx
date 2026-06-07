@@ -9,6 +9,7 @@ export default function Feedback() {
     message: ""
   });
   const [submitted, setSubmitted] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
 
   const stats = [
     { label: "Family Satisfaction Index", value: "98.2%" },
@@ -40,9 +41,10 @@ export default function Feedback() {
   const handleSubmitFeedback = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.message) {
-      alert("Please fill out your name and the feedback narrative.");
+      setFormError("Please fill out your name and the feedback narrative.");
       return;
     }
+    setFormError(null);
     setSubmitted(true);
   };
 
@@ -181,6 +183,12 @@ export default function Feedback() {
                       className="w-full p-2.5 bg-white border border-slate-200 rounded-lg text-slate-850"
                     />
                   </div>
+
+                  {formError && (
+                    <div className="p-3 bg-red-50 border border-red-200 text-red-700 text-xs rounded-xl font-medium animate-shake">
+                      ⚠️ {formError}
+                    </div>
+                  )}
 
                   <button
                     type="submit"

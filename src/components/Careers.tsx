@@ -12,6 +12,7 @@ export default function Careers() {
     statement: ""
   });
   const [submitted, setSubmitted] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
 
   const roles = [
     {
@@ -50,9 +51,10 @@ export default function Careers() {
   const handleApply = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.statement) {
-      alert("Please enter your name, email, and statement of values.");
+      setFormError("Please enter your name, email, and statement of values.");
       return;
     }
+    setFormError(null);
     setSubmitted(true);
   };
 
@@ -282,6 +284,12 @@ export default function Careers() {
                       className="w-full p-2.5 bg-white border border-slate-200 rounded-lg text-slate-805"
                     />
                   </div>
+
+                  {formError && (
+                    <div className="p-3 bg-red-50 border border-red-200 text-red-700 text-xs rounded-xl font-medium animate-shake">
+                      ⚠️ {formError}
+                    </div>
+                  )}
 
                   <button
                     type="submit"

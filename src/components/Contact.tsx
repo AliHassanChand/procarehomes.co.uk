@@ -5,6 +5,7 @@ export default function Contact() {
   const [activeForm, setActiveForm] = useState<"referral" | "contact_us">("referral");
   const [referralFeedback, setReferralFeedback] = useState(false);
   const [contactFeedback, setContactFeedback] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
 
   // Form states
   const [referralForm, setReferralForm] = useState({
@@ -31,18 +32,20 @@ export default function Contact() {
   const handleReferralSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!referralForm.commissionerName || !referralForm.email || !referralForm.serviceUserName) {
-      alert("Please fill in high priority validation fields (Commissioner name, email, and Resident Name).");
+      setFormError("Please fill in high priority validation fields (Commissioner name, email, and Resident Name).");
       return;
     }
+    setFormError(null);
     setReferralFeedback(true);
   };
 
   const handleGeneralSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!generalForm.name || !generalForm.email || !generalForm.message) {
-      alert("Please fill in your name, email, and message.");
+      setFormError("Please fill in your name, email, and message.");
       return;
     }
+    setFormError(null);
     setContactFeedback(true);
   };
 
@@ -120,7 +123,7 @@ export default function Contact() {
               {/* Form toggles */}
               <div className="space-y-2 pt-2">
                 <button
-                  onClick={() => { setActiveForm("referral"); setContactFeedback(false); }}
+                  onClick={() => { setActiveForm("referral"); setContactFeedback(false); setFormError(null); }}
                   className={`w-full flex items-center space-x-3 p-3 rounded-xl border text-xs font-bold text-left transition-all ${
                     activeForm === "referral"
                       ? "bg-sky-600 border-sky-600 text-white"
@@ -132,7 +135,7 @@ export default function Contact() {
                 </button>
 
                 <button
-                  onClick={() => { setActiveForm("contact_us"); setReferralFeedback(false); }}
+                  onClick={() => { setActiveForm("contact_us"); setReferralFeedback(false); setFormError(null); }}
                   className={`w-full flex items-center space-x-3 p-3 rounded-xl border text-xs font-bold text-left transition-all ${
                     activeForm === "contact_us"
                       ? "bg-sky-600 border-sky-600 text-white"
@@ -328,6 +331,12 @@ export default function Contact() {
                         />
                       </div>
 
+                      {formError && (
+                        <div className="p-3 bg-red-50 border border-red-200 text-red-700 text-xs rounded-xl font-medium animate-shake">
+                          ⚠️ {formError}
+                        </div>
+                      )}
+
                       <button
                         type="submit"
                         className="w-full py-3 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl flex items-center justify-center space-x-2 transition shadow-md shadow-sky-100"
@@ -426,6 +435,12 @@ export default function Contact() {
                           className="w-full p-2.5 bg-white border border-slate-200 rounded-lg text-slate-850"
                         />
                       </div>
+
+                      {formError && (
+                        <div className="p-3 bg-red-50 border border-red-200 text-red-700 text-xs rounded-xl font-medium animate-shake">
+                          ⚠️ {formError}
+                        </div>
+                      )}
 
                       <button
                         type="submit"
