@@ -12,9 +12,15 @@ import {
   Download, 
   FileSignature 
 } from "lucide-react";
+import PageHero from "./PageHero.tsx";
 
-export default function Policies() {
+interface PoliciesProps {
+  onNavigate?: (sectionId: string) => void;
+}
+
+export default function Policies({ onNavigate }: PoliciesProps) {
   const [searchTerm, setSearchTerm] = useState("");
+
   const [activeCategory, setActiveCategory] = useState("all");
   const [verificationStatus, setVerificationStatus] = useState<string | null>(null);
 
@@ -42,18 +48,18 @@ export default function Policies() {
       summary: "Establishes a dignified, non-punitive system for family members, social workers, and residents to log complaints, ensuring structured timelines for transparent resolution.",
       highlights: [
         "Receipt acknowledgment inside 24 working hours",
-        "Clinical investigation findings reported within 14 days",
+        "Formal investigation findings reported within 14 days",
         "Independent mediation pathways detailed",
         "Resident-accessible pictorial complaint guides"
       ]
     },
     {
       id: "governance",
-      title: "Clinical & Operational Governance Framework",
+      title: "Quality & Operational Governance Framework",
       code: "POL-GOV-303",
       category: "governance",
       lastReviewed: "May 2026",
-      summary: "Oversight of care delivery standards, positive safety audits, documentation structures (Nourish), medication double-administrations, and clinical metrics.",
+      summary: "Oversight of care delivery standards, positive safety audits, documentation structures (Nourish), medication double-administrations, and quality support metrics.",
       highlights: [
         "Monthly independent Regulation 17 style audits",
         "MDT quality circles checking restrictive practice reductions",
@@ -83,7 +89,7 @@ export default function Policies() {
       lastReviewed: "December 2025",
       summary: "Maintains full alignment with UK GDPR and NHS Information Governance Toolkits to guarantee robust confidentiality for patient care records and digital files.",
       highlights: [
-        "Nourish clinical dashboards encrypted at rest (AES-256)",
+        "Nourish recording dashboards encrypted at rest (AES-256)",
         "Mandatory annual data privacy training for all staff",
         "Secure physical storage for legal physical dossiers",
         "Clear resident-accessible Subject Access Request (SAR)"
@@ -100,7 +106,7 @@ export default function Policies() {
         "Enhanced DBS checks with Adult Barred List audits",
         "Full 5-year unbroken history verification",
         "Mandatory face-to-face values exploration panels",
-        "Unplanned probation clinical reviews"
+        "Unplanned probation quality checks"
       ]
     }
   ];
@@ -114,22 +120,11 @@ export default function Policies() {
   });
 
   return (
-    <div className="animate-fadeIn font-sans bg-warm-bg pt-44 pb-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Page Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <span className="text-xs font-bold uppercase tracking-wider text-[#5E8B7E] font-mono block">
-            REGULATORY COMPLIANCE SYSTEM
-          </span>
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-gov-blue tracking-tight leading-tight">
-            Policies & Governance Hub
-          </h1>
-          <div className="w-16 h-1 bg-premium-gold mx-auto rounded-full" />
-          <p className="text-text-secondary text-sm leading-relaxed">
-            Welcome to the public verification directory. PRO Care Homes Ltd operates with complete transparency. Audit, review, or print our operational standards immediately below.
-          </p>
-        </div>
+    <div id="policies-view" className="animate-fadeIn">
+      <PageHero sectionId="policies" onNavigate={onNavigate} />
+      
+      <section id="policies" className="py-20 bg-warm-bg relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Info Box */}
         <div className="bg-gov-blue text-white rounded-3xl p-8 mb-12 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
@@ -160,7 +155,7 @@ export default function Policies() {
             {[
               { id: "all", label: "All Operating Frameworks" },
               { id: "safeguarding", label: "Safeguarded Care" },
-              { id: "governance", label: "Clinical Governance" },
+              { id: "governance", label: "Quality Governance" },
               { id: "recruitment", label: "Professional Sourcing" },
               { id: "ethics", label: "Equal Rights & Inclusion" },
               { id: "privacy", label: "confidentiality" }
@@ -285,6 +280,7 @@ export default function Policies() {
         )}
 
       </div>
-    </div>
-  );
+    </section>
+  </div>
+);
 }

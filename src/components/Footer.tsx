@@ -109,7 +109,7 @@ export default function Footer({ onNavigate }: { onNavigate: (id: string) => voi
                 <Mail className="w-4 h-4 text-care-green flex-shrink-0 mt-0.5" />
                 <div className="break-all">
                   <p className="font-bold text-white text-[11px]">referrals@procarehomes.co.uk</p>
-                  <p className="text-[9px] text-slate-550">Secured clinical inbox</p>
+                  <p className="text-[9px] text-slate-500">Secured referrals inbox</p>
                 </div>
               </li>
             </ul>

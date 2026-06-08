@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import { Send, MapPin, Phone, Mail, ShieldCheck, HeartHandshake, FileCheck2, UserRoundPlus, CheckCircle2 } from "lucide-react";
+import PageHero from "./PageHero.tsx";
 
-export default function Contact() {
+interface ContactProps {
+  onNavigate?: (sectionId: string) => void;
+}
+
+export default function Contact({ onNavigate }: ContactProps) {
   const [activeForm, setActiveForm] = useState<"referral" | "contact_us">("referral");
+
   const [referralFeedback, setReferralFeedback] = useState(false);
   const [contactFeedback, setContactFeedback] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
@@ -50,25 +56,14 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-white border-t border-slate-150">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 font-mono block">
-            Placement Placements & Consultations
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-            Contact & Referrals Channel
-          </h2>
-          <div className="w-16 h-1 bg-emerald-600 mx-auto rounded-full" />
-          <p className="text-slate-600 text-sm">
-            Are you a local authority social care commissioner, an NHS case manager, or a concerned family member? Submit a secure digital form below, and we will initiate the assessment process.
-          </p>
-        </div>
-
-        {/* Info Grid: Address, Call, and CQC registration numbers */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 text-slate-800">
+    <div id="contact-view" className="animate-fadeIn">
+      <PageHero sectionId="contact" onNavigate={onNavigate} />
+      
+      <section id="contact" className="py-20 bg-white relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Info Grid: Address, Call, and CQC registration numbers */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 text-slate-800">
           <div className="bg-slate-50 border border-slate-150 p-6 rounded-2xl flex items-start space-x-4">
             <span className="p-3 bg-sky-100 text-sky-700 rounded-xl">
               <Phone className="w-5 h-5" />
@@ -117,7 +112,7 @@ export default function Contact() {
             <div className="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 space-y-6 shadow-md">
               <h3 className="font-bold text-lg tracking-tight">Referral Framework</h3>
               <p className="text-xs text-slate-305 leading-relaxed">
-                Choose the secure submission portal matching your specific query to fast-track clinical reviews:
+                Choose the secure submission portal matching your specific query to fast-track placement reviews:
               </p>
 
               {/* Form toggles */}
@@ -167,7 +162,7 @@ export default function Contact() {
                 Standard Admission Sequence:
               </h4>
               <ol className="list-decimal list-inside space-y-1.5 text-xs text-slate-600">
-                <li>Pre-Admission Clinical Review (48 Hours)</li>
+                <li>Pre-Admission Support Review (48 Hours)</li>
                 <li>Compatibility Assessment with Residents</li>
                 <li>Staged familiarization visits to 6 Flags House</li>
                 <li>NHS or Social Services funding confirmation</li>
@@ -188,7 +183,7 @@ export default function Contact() {
                       </div>
                       <h3 className="text-lg font-bold text-slate-905">Referral Securely Lodged</h3>
                       <p className="text-slate-650 text-xs sm:text-sm leading-relaxed max-w-md mx-auto">
-                        Thank you for submitting a referral for <strong>{referralForm.serviceUserName}</strong>. Our clinician lead <strong>Boston Murray</strong> will audit this file and coordinate with your scouting team at <strong>{referralForm.authority}</strong>. Initial clinical outcomes review will be returned within 48 business hours.
+                        Thank you for submitting a referral for <strong>{referralForm.serviceUserName}</strong>. Our support team reviewed by Nominated Individual <strong>Boston Murray</strong> will review this file and coordinate with your team at <strong>{referralForm.authority}</strong>. Initial placement compatibility review will be returned within 48 business hours.
                       </p>
                       <button
                         onClick={() => { setReferralFeedback(false); setReferralForm({ commissionerName: "", authority: "", email: "", phone: "", serviceUserName: "", dob: "", diagnosis: "Learning Disability & Autism Mix", fundingStatus: "Secured", riskDetails: "", requiredRatios: "1:1 Support" }); }}
@@ -462,5 +457,6 @@ export default function Contact() {
 
       </div>
     </section>
-  );
+  </div>
+);
 }

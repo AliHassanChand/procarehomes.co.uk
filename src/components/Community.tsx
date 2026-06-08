@@ -1,7 +1,13 @@
 import { Rocket, GraduationCap, MapPin, Smile, Landmark, CalendarCheck2 } from "lucide-react";
+import PageHero from "./PageHero.tsx";
 
-export default function Community() {
+interface CommunityProps {
+  onNavigate?: (sectionId: string) => void;
+}
+
+export default function Community({ onNavigate }: CommunityProps) {
   const items = [
+
     {
       title: "Real-World Education",
       desc: "We coordinate admissions with local UK Further Education colleges for customized foundation studies, digital literacy courses, and creative crafts.",
@@ -29,25 +35,14 @@ export default function Community() {
   ];
 
   return (
-    <section id="community" className="py-24 bg-slate-50 border-t border-slate-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-20">
-          <span className="text-xs font-bold uppercase tracking-wider text-sky-700 font-mono block">
-            Citizenship & Life Beyond Support
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-            Community Integration & Meaningful Outcomes
-          </h2>
-          <div className="w-16 h-1 bg-sky-600 mx-auto rounded-full" />
-          <p className="text-slate-600 text-sm">
-            We believe that high-quality care does not confine. We build relationships with local shops, gyms, cafes, and education hubs to ensure residents contribute as authentic citizens.
-          </p>
-        </div>
-
-        {/* Dynamic Highlight Card with layout splits */}
-        <div className="bg-white rounded-3xl border border-slate-150 overflow-hidden shadow-sm mb-16">
+    <div id="community-view" className="animate-fadeIn">
+      <PageHero sectionId="community" onNavigate={onNavigate} />
+      
+      <section id="community" className="py-20 bg-slate-50 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Dynamic Highlight Card with layout splits */}
+          <div className="bg-white rounded-3xl border border-slate-150 overflow-hidden shadow-sm mb-16">
           <div className="grid grid-cols-1 lg:grid-cols-2">
             
             {/* Story Text Left */}
@@ -62,7 +57,7 @@ export default function Community() {
                 Too often, social care organizations rely on pre-booked service mini-vans that isolate residents as a group. At PRO Care Homes, we dismantle this artificial separation. 
               </p>
               <p className="text-slate-650 text-xs sm:text-sm leading-relaxed">
-                By designing mapped, incremental positive risk profiles under the guidance of lead clinician Boston Murray, we help residents shop for their own ingredients, utilize public high streets, participate in recreation clubs, and find volunteering opportunities.
+                By designing mapped, incremental positive risk profiles under the guidance of Nominated Individual Boston Murray, we help residents shop for their own ingredients, utilize public high streets, participate in recreation clubs, and find volunteering opportunities.
               </p>
 
               <div className="border-t border-slate-100 pt-4 flex items-center space-x-3 text-xs">
@@ -136,5 +131,6 @@ export default function Community() {
 
       </div>
     </section>
-  );
+  </div>
+);
 }

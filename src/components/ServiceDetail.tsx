@@ -1,4 +1,5 @@
 import React from "react";
+import PageHero from "./PageHero.tsx";
 import { 
   ShieldCheck, 
   Sparkles, 
@@ -58,7 +59,7 @@ export default function ServiceDetail({ serviceId, onNavigate }: ServiceDetailPr
       outcomes: [
         "92% average improvement in expressive and alternative communication styles",
         "Visible self-sufficiency gains across core domestic tasks inside 6 months",
-        "Reduced reliance on clinical prompting, yielding authentic resident pride",
+        "Reduced reliance on active coaching prompts, yielding authentic resident pride",
         "Staged transitions to independent step-down units where appropriate"
       ],
       cqcAlignment: "Under Key Line of Inquiry (KLOI) - Effective: We custom design communication and developmental systems so every resident is fully heard and actively co-produces their daily plan.",
@@ -95,7 +96,7 @@ export default function ServiceDetail({ serviceId, onNavigate }: ServiceDetailPr
       outcomes: [
         "88% decline in sensory-induced emotional meltdowns inside 3 months",
         "Consistent development of positive self-advocacy and client-led boundaries",
-        "Drastic reduction in the need for clinical behavioral interceptions",
+        "Drastic reduction in the need for high-intensity behavioral interventions",
         "Enhanced family visitation comfort within customized private suites"
       ],
       cqcAlignment: "Under KLOI - Responsive: Our care pathways are constructed around the unique sensory and neurodivergent signatures of each individual, rather than standardized groups.",
@@ -121,7 +122,7 @@ export default function ServiceDetail({ serviceId, onNavigate }: ServiceDetailPr
         "Trauma-Informed relational models designed to rebuild trust & psychological safety",
         "Co-designed relapse prevention planners identifying internal emotional warning flags",
         "Structured stress-regulation techniques (dialectical therapy support, mindfulness, somatic exercises)",
-        "Strict oversight of clinical medication administration with audited compliance trackers"
+        "Strict oversight of safe medication support with audited compliance trackers"
       ],
       personCentred: [
         "Personalized triggers blueprint co-authored by the resident and keyworker",
@@ -135,29 +136,29 @@ export default function ServiceDetail({ serviceId, onNavigate }: ServiceDetailPr
         "High rates of community reintegration, training, and micro-employment",
         "Rebuilding of supportive connections with remote families"
       ],
-      cqcAlignment: "Under KLOI - Effective & Caring: Delivering highly integrated, trauma-informed clinical systems that ensure psychological safety with deep human dignity.",
+      cqcAlignment: "Under KLOI - Effective & Caring: Delivering highly integrated, trauma-informed support frameworks that ensure psychological safety with deep human dignity.",
       faqs: [
         {
           q: "How do you coordinate with community psychiatric networks?",
-          a: "We maintain shared communication channels with NHS Foundation Trusts and localized CMHT teams, holding multi-agency reviews to guarantee continuity of clinical care."
+          a: "We maintain shared communication channels with NHS Foundation Trusts and localized CMHT teams, holding multi-agency reviews to guarantee continuity of care and support."
         },
         {
           q: "What options do you offer for crisis management?",
-          a: "Every client has an active crisis care map. We use proactive de-escalation, sensory soothing kits, and on-call clinical escalation pathways available 24/7."
+          a: "Every client has an active crisis care map. We use proactive de-escalation, sensory soothing kits, and on-call quality assurance escalation pathways available 24/7."
         }
       ]
     },
     "personal-care": {
       title: "Dignified Personal Care Excellence",
       sub: "Dignity-first physical care assistance with hygiene, nutrition, and medicine management.",
-      badge: "Clinical Care Excellence",
+      badge: "Best Practice Quality Care",
       heroBg: "from-[#5E8B7E] via-[#7DB6A3] to-gov-blue",
-      overview: "Physical care demands are met with the highest level of clinical safety combined with absolute respect for personal space. We ensure that our residents maintain their self-respect, daily presentation, and biological health. At 6 Flags House, all bedrooms feature private en-suite bathroom zones to allow completely private, dignified support schedules.",
+      overview: "Physical care demands are met with the highest level of support safety combined with absolute respect for personal space. We ensure that our residents maintain their self-respect, daily presentation, and biological health. At 6 Flags House, all bedrooms feature private en-suite bathroom zones to allow completely private, dignified support schedules.",
       sopText: "SOP-PC-704 Framework: Multi-step hygiene support schedules, audited medication double-signatures, skin integrity preservation trackers, and nutritional logs via Nourish tablets.",
       methodologies: [
         "Dignity-first manual handling utilizing premium assistive tools",
         "Audited medication tracking with electronic barcodes to eliminate administration errors",
-        "Robust nutritional mapping overseen by clinical dieticians",
+        "Robust nutritional mapping overseen by qualified nutrition specialists",
         "Active training for support staff on gender sensitivity and cultural modesty standards"
       ],
       personCentred: [
@@ -172,7 +173,7 @@ export default function ServiceDetail({ serviceId, onNavigate }: ServiceDetailPr
         "Residents report feeling fully respected in their visual appearance and dignity",
         "No issues of compliance or physical safeguarding ever documented"
       ],
-      cqcAlignment: "Under KLOI - Safe & Caring: Prioritizing clinical safety alongside personal respect during physical assistance, safeguarding bodily autonomy.",
+      cqcAlignment: "Under KLOI - Safe & Caring: Prioritizing physical safety alongside personal respect during physical assistance, safeguarding bodily autonomy.",
       faqs: [
         {
           q: "How are your staff trained for personal care?",
@@ -263,10 +264,10 @@ export default function ServiceDetail({ serviceId, onNavigate }: ServiceDetailPr
       sub: "Premium, dignified 24/7 supported placement focusing on permanent safety and comfort.",
       badge: "Outstanding Environment Model",
       heroBg: "from-slate-900 via-gov-blue to-[#7DB6A3]",
-      overview: "6 Flags House stands as a premier specialist care home. Designed to marry NHS clinical standards with home-like comfort, it supports adults with learning disabilities, autism spectrum conditions, and associated complex needs. Refined aesthetics, generous gardens, sensory integration cabins, and modern en-suite chambers offer a peaceful lifestyle of long-term stability.",
+      overview: "6 Flags House stands as a premier specialist care home. Designed to marry high-quality care standards with home-like comfort, it supports adults with learning disabilities, autism spectrum conditions, and associated complex needs. Refined aesthetics, generous gardens, sensory integration cabins, and modern en-suite chambers offer a peaceful lifestyle of long-term stability.",
       sopText: "SOP-RES-101 Protocol: 24/7 integrated nursing and specialized social care staffing, comprehensive safety audits, and fully transparent visual accountability checks.",
       methodologies: [
-        "24-hour trained support teams including dedicated clinical on-call advisors",
+        "24-hour trained support teams including dedicated care and quality on-call advisors",
         "Rigorous quarterly fire, structural, and infection-control audits",
         "Bespoke acoustic modeling and lighting designs to eliminate anxiety triggers",
         "NHSmail referrals gateway for secure and instant local authority access"
@@ -297,10 +298,10 @@ export default function ServiceDetail({ serviceId, onNavigate }: ServiceDetailPr
     },
     "positive-behaviour-support": {
       title: "Gold-Standard Positive Behaviour Support",
-      sub: "Restraint-reduction clinical system removing restrictions and empowering safe communication.",
+      sub: "Restraint-reduction support approach removing restrictions and empowering safe communication.",
       badge: "MDT Positive Behaviour Support Approved",
       heroBg: "from-gov-blue via-[#5E8B7E] to-[#7DB6A3]",
-      overview: "Our Positive Behaviour Support (PBS) model is the core clinical framework of PRO Care Homes. Guided by specialized BCAB/clinical consultants, we operate with a singular philosophy: all distressed behaviors are functional communication attempts. By analyzing environmental precursors, physical triggers, and emotional antecedents, we systematically eliminate restrictive practices.",
+      overview: "Our Positive Behaviour Support (PBS) model is the core support framework of PRO Care Homes. Guided by specialized behaviour support consultants, we operate with a singular philosophy: all distressed behaviors are functional communication attempts. By analyzing environmental precursors, physical triggers, and emotional antecedents, we systematically eliminate restrictive practices.",
       sopText: "SOP-PBS-201 Standard: Comprehensive Functional Behaviour Assessments (FBA), personalized green/amber/red tracking, and daily digital metrics on Nourish.",
       methodologies: [
         "Functional Behaviour Assessments (FBA) co-vetted by multidisciplinary experts",
@@ -316,7 +317,7 @@ export default function ServiceDetail({ serviceId, onNavigate }: ServiceDetailPr
       ],
       outcomes: [
         "85% average reduction in high-intensity distressed incidents within 6 months",
-        "Absolute eradication of manual or clinical mechanical restrictions",
+        "Absolute eradication of manual or restrictive mechanical interventions",
         "Dramatically reduced stress-exhaustion markers among resident and staff lists",
         "Enables residents to access previously restricted community activities safely"
       ],
@@ -331,53 +332,52 @@ export default function ServiceDetail({ serviceId, onNavigate }: ServiceDetailPr
           a: "All care colleagues use digital Nourish tablets to log amber precursors in real-time, allowing our MDT to adjust triggers immediately before distress occurs."
         }
       ]
+    },
+    "dementia-care": {
+      title: "Specialist Dementia & Memory Pathways",
+      sub: "Cognitive validation therapies and secure, memory-optimized environments designed to promote ongoing familiarity.",
+      badge: "MDT Dementia & Memory Care",
+      heroBg: "from-sky-950 via-teal-900 to-gov-blue",
+      overview: "PRO Care Homes offers secure, specialist support for individuals living with early-onset, complex, or advanced stage dementia. Driven by cognitive validation therapy and the Eden Alternative philosophy, we focus on nourishing remaining strengths, preventing stress, and preserving life stories rather than tracking losses.",
+      sopText: "SOP-DEM-302-System: Structured life-story mapping, 24/7 safe quiet pacing circuits, dementia sensory diets, and personalized environmental memory anchors.",
+      methodologies: [
+        "Structured Life-Story Work & memory boards co-developed with friends and families",
+        "Sensory gardens and safe circular wandering pathways avoiding dead-ends",
+        "Eden Alternative validation practices emphasizing companionship, agency, and usefulness",
+        "Orientation support with clear, high-contrast visual cues and nostalgic touchpoints"
+      ],
+      personCentred: [
+        "Personal memory scrapbooks and custom item chests on bedroom thresholds",
+        "Assistance with meals using high-contrast crockery to enhance nutritional intake",
+        "Familiar sleep-prep and early riser schedules based on historic work/life habits",
+        "Therapeutic music playlists curating sounds from the client's past eras"
+      ],
+      outcomes: [
+        "94% increase in nutritional intake and visual meal recognition levels",
+        "Drastic reduction in sundowning distress and twilight orientation challenges",
+        "Noticeable emotional comfort, calm breathing, and social conversational ease",
+        "Deep family comfort validated across monthly advisory panels"
+      ],
+      cqcAlignment: "Under KLOI - Caring & Responsive: Delivering sensory, music, and validation plans tailored specifically to memory and orientation parameters.",
+      faqs: [
+        {
+          q: "What is validation therapy, and how does it compare to orientation therapy?",
+          a: "Validation therapy honors the client's current reality instead of correcting them. If a resident believes they need to prepare for an old school day, we support the feeling of achievement rather than inducing anxiety."
+        },
+        {
+          q: "Are the garden pathways secure?",
+          a: "Yes. All our gardens feature seamless circular walking paths avoiding sharp dead-ends or visual blocks, lowering pacing anxiety in a completely safe, enclosed space."
+        }
+      ]
     }
   };
 
   const currentData = serviceData[serviceId] || serviceData["learning-disabilities"];
-  const IconHero = serviceId === "autism-support" ? Fingerprint : serviceId === "mental-health-support" ? Activity : ShieldCheck;
 
   return (
     <div id="service-details-view" className="animate-fadeIn font-sans bg-warm-bg">
       
-      {/* 1. PROFESSIONAL HERO SECTION */}
-      <section className={`relative pt-44 pb-20 bg-gradient-to-br ${currentData.heroBg} text-white overflow-hidden`}>
-        {/* Glow and decoration background */}
-        <div className="absolute inset-0 bg-white/[0.02] backdrop-blur-[1px]" />
-        <div className="absolute top-1/4 right-1/4 w-80 h-80 bg-white/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-0 left-10 w-[400px] h-[400px] bg-care-green/10 rounded-full blur-3xl" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl space-y-6">
-            <div className="inline-flex items-center space-x-2 bg-white/10 border border-white/20 px-3 py-1 rounded-full">
-              <IconHero className="w-4 h-4 text-premium-gold animate-bounce" />
-              <span className="text-[10px] font-bold uppercase tracking-wider font-mono text-white/95">
-                {currentData.badge}
-              </span>
-            </div>
-            <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
-              {currentData.title}
-            </h1>
-            <p className="text-base sm:text-lg text-white/90 leading-relaxed font-normal">
-              {currentData.sub}
-            </p>
-            <div className="pt-2 flex flex-wrap gap-3">
-              <button 
-                onClick={() => onNavigate("contact")}
-                className="px-5 py-3 bg-premium-gold hover:bg-white text-gov-blue hover:text-gov-blue font-extrabold text-xs rounded-xl shadow-lg transition duration-200 transform active:scale-95"
-              >
-                Book Pre-Admission Slot
-              </button>
-              <button 
-                onClick={() => onNavigate("referrals")}
-                className="px-5 py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs rounded-xl transition duration-200"
-              >
-                Placement Sequence →
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero sectionId={`services-${serviceId}`} onNavigate={onNavigate} />
 
       {/* 2. CORE SERVICE OVERVIEW & SOP BOX */}
       <section className="py-16 bg-white border-b border-gov-blue/5">
@@ -400,7 +400,7 @@ export default function ServiceDetail({ serviceId, onNavigate }: ServiceDetailPr
               <div className="bg-gov-blue/[0.03] p-5 rounded-2xl border-l-4 border-premium-gold space-y-2">
                 <div className="flex items-center space-x-2 text-gov-blue font-bold text-[10px] uppercase font-mono tracking-wider">
                   <FileText className="w-4 h-4 text-premium-gold" />
-                  <span>Clinical Standard Operating Procedure (SOP) Guidance</span>
+                  <span>Standard Operating Procedure (SOP) Guidance</span>
                 </div>
                 <p className="text-xs text-text-primary font-medium italic">
                   &ldquo;{currentData.sopText}&rdquo;
@@ -439,7 +439,7 @@ export default function ServiceDetail({ serviceId, onNavigate }: ServiceDetailPr
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             
-            {/* Box A: Clinical Methodologies */}
+            {/* Box A: Support Methodologies */}
             <div className="bg-white border border-gov-blue/5 p-8 rounded-3xl space-y-6 shadow-xs">
               <div className="space-y-1">
                 <span className="text-[10px] font-bold uppercase tracking-widest text-[#5E8B7E] font-mono block">CORE PILLARS</span>
@@ -532,10 +532,10 @@ export default function ServiceDetail({ serviceId, onNavigate }: ServiceDetailPr
         <div className="absolute inset-0 bg-white/[0.02]" />
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-6">
           <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight">
-            Ready to initiate a clinical compatibility review or request a visit?
+            Ready to initiate a placement compatibility review or request a visit?
           </h3>
           <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto leading-relaxed">
-            Our strategic clinical governance leader Boston Murray will review secure referral dossiers within 48 business hours. We coordinate closely with Local Authorities and families.
+            Our CQC Nominated Individual Boston Murray will review secure referral dossiers within 48 business hours. We coordinate closely with Local Authorities and families.
           </p>
           <div className="pt-2 flex justify-center space-x-3.5">
             <button 

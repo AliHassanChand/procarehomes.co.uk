@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import { motion } from "motion/react";
 import { Home, Accessibility, ShieldCheck, Heart, UserPlus, Milestone, Sparkles, BookOpen, Fingerprint } from "lucide-react";
+import PageHero from "./PageHero.tsx";
 
 export default function Services({ onNavigate }: { onNavigate: (id: string) => void }) {
   const [activeTab, setActiveTab] = useState("all");
 
   const services = [
+
     {
       id: "residential",
       icon: Home,
       title: "Residential Support",
       category: "core",
       description: "Comprehensive 24/7 specialist therapeutic residential care at our high-specification homes.",
-      approach: "Transitioning away from clinical institutions into micro-communities that provide warmth and structured security.",
+      approach: "Transitioning away from institutional wards into micro-communities that provide warmth and structured security.",
       methodology: [
         "24-hour highly trained on-site support staffing",
         "Individualized sensory environment configurations",
@@ -80,7 +82,7 @@ export default function Services({ onNavigate }: { onNavigate: (id: string) => v
         "Greater personal emotional accountability",
         "Fewer emergency inpatient admissions"
       ],
-      cqc: "Effective & Responsive: Clinical integration to ensure psychological safety."
+      cqc: "Effective & Responsive: Integrated supportive care to ensure psychological safety."
     },
     {
       id: "personal-care",
@@ -92,14 +94,14 @@ export default function Services({ onNavigate }: { onNavigate: (id: string) => v
       methodology: [
         "Private bathroom en-suite setups in every room",
         "Rigorous training on manual handling and personal dignity",
-        "Strict clinical medication administration checks via Nourish"
+        "Strict safe medication administration checks via Nourish"
       ],
       outcomes: [
         "Maintenance of optimal physical hygiene and pride",
         "Zero medication errors goal achieved via double-audits",
         "Respectful support aligning to gender and personal identity"
       ],
-      cqc: "Safe & Caring: Prioritizing clinical safety alongside personal respect."
+      cqc: "Safe & Caring: Prioritizing physical and emotional safety alongside personal respect."
     },
     {
       id: "community-participation",
@@ -194,7 +196,7 @@ export default function Services({ onNavigate }: { onNavigate: (id: string) => v
         "Highly auditable evidence logs for CQC inspectors and commissioners",
         "Authentic resident pride in their documented achievements"
       ],
-      cqc: "Safe, Effective & Well-Led: Clear, measurable, auditable live clinical outcomes."
+      cqc: "Safe, Effective & Well-Led: Clear, measurable, auditable live outcomes."
     }
   ];
 
@@ -203,25 +205,14 @@ export default function Services({ onNavigate }: { onNavigate: (id: string) => v
     : services.filter(s => s.category === activeTab);
 
   return (
-    <section id="services" className="py-24 bg-slate-50 border-t border-slate-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <span className="text-xs font-bold uppercase tracking-wider text-sky-700 font-mono block">
-            Specialist Health & Social Care Portfolios
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-            Our Care & Support Services
-          </h2>
-          <div className="w-16 h-1 bg-sky-600 mx-auto rounded-full" />
-          <p className="text-slate-600 text-sm">
-            We provide robustly governed, therapeutic services structured directly alongside CQC Fundamental Standards and modern NHS commissioner requirements.
-          </p>
-        </div>
-
-        {/* Filter Toolbar */}
-        <div className="flex justify-center flex-wrap gap-2 mb-12">
+    <div id="services-hub-view" className="animate-fadeIn">
+      <PageHero sectionId="services-hub" onNavigate={onNavigate} />
+      
+      <section id="services" className="py-20 bg-slate-50 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Filter Toolbar */}
+          <div className="flex justify-center flex-wrap gap-2 mb-12 bg-white/45 p-3 rounded-2xl border border-slate-100 max-w-2xl mx-auto backdrop-blur-sm shadow-xs">
           {[
             { id: "all", label: "All Care Portfolios" },
             { id: "core", label: "Core Residential & PBS" },
@@ -279,7 +270,7 @@ export default function Services({ onNavigate }: { onNavigate: (id: string) => v
                   {/* Approach section */}
                   <div className="bg-slate-50/80 p-3.5 rounded-xl border border-slate-100 space-y-1 text-xs">
                     <span className="font-bold text-slate-800 text-[10px] block uppercase font-mono tracking-wide">
-                      Our Clinical Approach:
+                      Our Support Approach:
                     </span>
                     <p className="text-slate-600 italic leading-relaxed text-[11px]">
                       &ldquo;{service.approach}&rdquo;
@@ -336,5 +327,6 @@ export default function Services({ onNavigate }: { onNavigate: (id: string) => v
 
       </div>
     </section>
-  );
+  </div>
+);
 }

@@ -72,7 +72,7 @@ export default function AssistantChat() {
         {
           id: Math.random().toString(),
           sender: "assistant",
-          text: "I apologize. My secure clinical server is verifying integration parameters. Please click our Make a Referral option above or write to our support workers directly.",
+          text: "I apologize. Our secure server is verifying integration parameters. Please click our Make a Referral option above or write to our support workers directly.",
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         }
       ]);

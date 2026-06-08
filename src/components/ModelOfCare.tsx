@@ -1,28 +1,34 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Award, BrainCircuit, Heart, Fingerprint, UserCheck, Accessibility } from "lucide-react";
+import PageHero from "./PageHero.tsx";
 
-export default function ModelOfCare() {
+interface ModelOfCareProps {
+  onNavigate?: (sectionId: string) => void;
+}
+
+export default function ModelOfCare({ onNavigate }: ModelOfCareProps) {
   const [activeTab, setActiveTab] = useState("pbs");
 
   const models = [
+
     {
       id: "pbs",
       title: "Positive Behaviour Support (PBS)",
       short: "A values-led framework based on human rights and behavioral science.",
       icon: BrainCircuit,
       meaning: "Positive Behaviour Support is a multi-tiered framework designed to understand the context and purpose of an individual's behaviors that challenge. It is not about control, but about understanding what the person is communicating and modifying their environment, schedule, or skillsets to improve quality of life.",
-      implementation: "Each resident has a bespoke Functional Behaviour Assessment led by Boston Murray (our Clinician Lead) and our PBS practitioners. We map triggers, early warning signs, distress signs, and primary coping mechanisms into a traffic-light crisis plan. Staff are 100% trained in de-escalation and positive reinforcement rather than restrictive practices.",
+      implementation: "Each resident has a bespoke Functional Behaviour Assessment led by Nominated Individual Boston Murray and our PBS practitioners. We map triggers, early warning signs, distress signs, and primary coping mechanisms into a traffic-light crisis plan. Staff are 100% trained in de-escalation and positive reinforcement rather than restrictive practices.",
       benefits: "Residents experience a steep decline in anxiety, stress, and challenging episodes. They feel heard and understood, leading to better family visits, greater community engagement, and fewer safety intervention incident logs.",
       delivery: "Continuous training of support workers, real-time logging of triggers on Nourish digital tablets, monthly behavioral analysis charts shared with multidisciplinary teams, and proactive visual schedule implementation."
     },
     {
       id: "tic",
       title: "Trauma-Informed Care (TIC)",
-      short: "Shifting the clinical query from 'What is wrong with you?' to 'What happened to you?'",
+      short: "Shifting the primary question from 'What is wrong with you?' to 'What happened to you?'",
       icon: Award,
       meaning: "Trauma-Informed Care acknowledges that individuals with complex learning profiles or mental health challenges often have backgrounds of severe placement distress, medical constraints, or personal exclusion. It ensures everyone works with a deep sensitivity to past traumas.",
-      implementation: "We conduct clinical trauma histories mapping triggers that could cause trauma flashbacks. Care plans ensure staff avoid aggressive tones, physical blocks, or intimidating body language. It guides room lighting, sensory schedules, and staff consistency.",
+      implementation: "We conduct thorough trauma histories mapping triggers that could cause trauma flashbacks. Care plans ensure staff avoid aggressive tones, physical blocks, or intimidating body language. It guides room lighting, sensory schedules, and staff consistency.",
       benefits: "Creates a hyper-reassuring, safe climate where residents can heal. It bridges gaps in trust and helps residents form constructive attachments with their long-term support workers.",
       delivery: "Applying the five principles of Trauma-Informed Care: Safety, Trustworthiness, Choice, Collaboration, and Empowerment in every staff member's daily interactions."
     },
@@ -34,7 +40,7 @@ export default function ModelOfCare() {
       meaning: "PIE is an approach to services where the physical layout, visual accents, ambient noise levels, and staffing culture are specifically shaped to soothe emotional vulnerability and promote cognitive healing.",
       implementation: "In 6 Flags House, layout designs avoid fluorescent lighting, minimize echo chambers via bespoke acoustic paneling, and offer secluded sensory dens where residents can unwind away from communal areas.",
       benefits: "Reduces somatic stress indicators (raised heart rates, panic, sensory overload). It encourages natural social interaction without pressure, making communal spaces feel like comfortable family settings.",
-      delivery: "Design reviews of property spaces with feedback from clinicians and occupational therapists, maintaining non-institutional soft furnishings and neutral calming warm tones."
+      delivery: "Design reviews of property spaces with feedback from care quality leads and occupational therapists, maintaining non-institutional soft furnishings and neutral calming warm tones."
     },
     {
       id: "autism",
@@ -72,25 +78,14 @@ export default function ModelOfCare() {
   const CurrentIcon = currentModel.icon;
 
   return (
-    <section id="model-of-care" className="py-24 bg-gradient-to-br from-sky-50/20 via-white to-emerald-50/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 font-mono block">
-            Clinical Framework & Support Models
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-            Our Advanced Models of Care
-          </h2>
-          <div className="w-16 h-1 bg-emerald-600 mx-auto rounded-full" />
-          <p className="text-slate-600 text-sm">
-            We do not apply general care work. Every staff member represents an active practitioner of our highly governed operational sciences, ensuring outcomes-driven residential consistency.
-          </p>
-        </div>
-
-        {/* Tab Selection Area */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
+    <div id="model-of-care-view" className="animate-fadeIn">
+      <PageHero sectionId="model-of-care" onNavigate={onNavigate} />
+      
+      <section id="model-of-care" className="py-20 bg-gradient-to-br from-sky-50/20 via-white to-emerald-50/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Tab Selection Area */}
+          <div className="flex flex-wrap justify-center gap-2 mb-12">
           {models.map((m) => {
             const Icon = m.icon;
             return (
@@ -192,5 +187,6 @@ export default function ModelOfCare() {
 
       </div>
     </section>
-  );
+  </div>
+);
 }

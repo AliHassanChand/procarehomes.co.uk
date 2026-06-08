@@ -14,9 +14,15 @@ import {
   ClipboardCheck, 
   Building 
 } from "lucide-react";
+import PageHero from "./PageHero.tsx";
 
-export default function Referrals() {
+interface ReferralsProps {
+  onNavigate?: (sectionId: string) => void;
+}
+
+export default function Referrals({ onNavigate }: ReferralsProps) {
   const [referralFeedback, setReferralFeedback] = useState(false);
+
   const [formError, setFormError] = useState<string | null>(null);
   const [referralForm, setReferralForm] = useState({
     commissionerName: "",
@@ -46,13 +52,13 @@ export default function Referrals() {
     {
       step: "01",
       title: "Initial Secure Request",
-      desc: "Commissioners or NHS brokers upload clinical profiles. Files undergo isolation protocols for digital confidentiality compliance.",
+      desc: "Commissioners or NHS brokers upload support profiles. Files undergo isolation protocols for digital confidentiality compliance.",
       time: "Within 4 Hours"
     },
     {
       step: "02",
       title: "MDT Desktop Review",
-      desc: "Clinical Lead Boston Murray reviews files against existing resident matrix profiles to evaluate environmental compatibility.",
+      desc: "Nominated Individual Boston Murray reviews files against existing resident matrix profiles to evaluate environmental compatibility.",
       time: "Within 24 Hours"
     },
     {
@@ -70,25 +76,14 @@ export default function Referrals() {
   ];
 
   return (
-    <div className="animate-fadeIn font-sans bg-warm-bg pt-44 pb-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Page Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <span className="text-xs font-bold uppercase tracking-wider text-[#5E8B7E] font-mono block">
-            LOCAL AUTHORITY PARTNERSHIPS
-          </span>
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-gov-blue tracking-tight leading-tight">
-            Referrals & Placement Pathways
-          </h1>
-          <div className="w-16 h-1 bg-premium-gold mx-auto rounded-full" />
-          <p className="text-text-secondary text-sm leading-relaxed">
-            We operate fully secure, speed-optimized digital diagnostic networks to guarantee highly compatible, robust placements for complex developmental and psychiatric healthcare profiles.
-          </p>
-        </div>
-
-        {/* Local Authority Pathway Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+    <div id="referrals-view" className="animate-fadeIn">
+      <PageHero sectionId="referrals" onNavigate={onNavigate} />
+      
+      <section id="referrals" className="py-20 bg-warm-bg relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Local Authority Pathway Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
           <div className="bg-white border border-gov-blue/5 p-6 rounded-2xl shadow-xs space-y-3">
             <div className="w-10 h-10 bg-gov-blue/5 text-gov-blue rounded-xl flex items-center justify-center">
               <Building className="w-5 h-5 text-gov-blue" />
@@ -191,7 +186,7 @@ export default function Referrals() {
                 COMPATIBILITY STANDARDS:
               </span>
               <p className="text-xs text-emerald-950 leading-relaxed">
-                Before admitting any individual to 6 Flags House, clinical managers compare cognitive milestones, sensory profiles, and physical environment needs to ensure a peaceful living dynamic for all residents.
+                Before admitting any individual to 6 Flags House, support managers compare cognitive milestones, sensory profiles, and physical environment needs to ensure a peaceful living dynamic for all residents.
               </p>
             </div>
           </div>
@@ -204,7 +199,7 @@ export default function Referrals() {
                 </div>
                 <h3 className="text-lg font-bold text-slate-900">Referral Securely Lodged</h3>
                 <p className="text-slate-650 text-xs sm:text-sm leading-relaxed max-w-md mx-auto">
-                  Thank you for submitting a referral for <strong>{referralForm.serviceUserName}</strong>. Our clinical team led by <strong>Boston Murray</strong> will audit this file and coordinate with your scouting team at <strong>{referralForm.authority}</strong>. Initial clinical outcomes review will be returned within 48 business hours.
+                  Thank you for submitting a referral for <strong>{referralForm.serviceUserName}</strong>. Our support team audited by Nominated Individual <strong>Boston Murray</strong> will review this file and coordinate with your team at <strong>{referralForm.authority}</strong>. Initial placement compatibility review will be returned within 48 business hours.
                 </p>
                 <button
                   onClick={() => { setReferralFeedback(false); setReferralForm({ commissionerName: "", authority: "", email: "", phone: "", serviceUserName: "", dob: "", diagnosis: "Learning Disabilities & Autism Mix", fundingStatus: "Secured", riskDetails: "", requiredRatios: "1:1 Support Day & night", authorityType: "CCG (NHS Commissioning)" }); }}
@@ -370,6 +365,7 @@ export default function Referrals() {
         </div>
 
       </div>
-    </div>
-  );
+    </section>
+  </div>
+);
 }

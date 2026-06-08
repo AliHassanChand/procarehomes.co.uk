@@ -1,7 +1,13 @@
 import { Tablet, Activity, Server, Database, ShieldAlert, CheckCircle2 } from "lucide-react";
+import PageHero from "./PageHero.tsx";
 
-export default function DigitalCare() {
+interface DigitalCareProps {
+  onNavigate?: (sectionId: string) => void;
+}
+
+export default function DigitalCare({ onNavigate }: DigitalCareProps) {
   const steps = [
+
     {
       title: "Real-Time Digital Recording",
       desc: "Every support worker carries a secure, encrypted mobile tablet. Instead of bulky folders, fluid actions are logged immediately during shifts — from nutritional logs to sleep patterns.",
@@ -25,24 +31,14 @@ export default function DigitalCare() {
   ];
 
   return (
-    <section id="digital" className="py-24 bg-slate-900 text-white relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl -z-10" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-sky-550/5 rounded-full blur-3xl -z-10" />
+    <div id="digital-view" className="animate-fadeIn">
+      <PageHero sectionId="digital" onNavigate={onNavigate} />
+      
+      <section id="digital" className="py-20 bg-slate-900 text-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl -z-10" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-sky-550/5 rounded-full blur-3xl -z-10" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Section Header */}
-        <div className="max-w-3xl space-y-4 mb-16">
-          <span className="text-xs font-bold uppercase tracking-widest text-sky-400 font-mono block">
-            Integrated Cloud Care Planning
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
-            Our Digital Care & Nourish System
-          </h2>
-          <p className="text-slate-350 text-xs sm:text-sm leading-relaxed max-w-xl">
-            PRO Care Homes operates 100% paperless clinical record management. Utilizing the industry-leading <strong>Nourish Care</strong> platform, we record, audit, and analyze our care delivery in real time.
-          </p>
-        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Big Dashboard Showcase Graphic Widget */}
         <div className="bg-slate-800/80 border border-slate-700 rounded-3xl p-6 sm:p-10 mb-16 shadow-xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -97,7 +93,7 @@ export default function DigitalCare() {
               {/* Audit footnote tag */}
               <div className="flex items-start space-x-2 bg-slate-900 p-2.5 rounded-lg text-[10px] text-slate-400 italic">
                 <ShieldAlert className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
-                <span>Nourish locks timestamps cryptographically to avoid post-incident clinical modification, ensuring 100% auditable protection for residents and families.</span>
+                <span>Nourish locks timestamps cryptographically to avoid post-incident record modification, ensuring 100% auditable protection for residents and families.</span>
               </div>
             </div>
           </div>
@@ -113,7 +109,7 @@ export default function DigitalCare() {
                 <div>
                   <h5 className="font-bold text-sm text-white">Live MDT Collaborative Action</h5>
                   <p className="text-slate-350 text-xs leading-relaxed mt-1">
-                    Instead of Waiting months to read paper logs, social workers and psychiatrists can be granted encrypted access to check real-time behavioral progress, facilitating quick, clinical medication audits.
+                    Instead of Waiting months to read paper logs, social workers and psychiatrists can be granted encrypted access to check real-time behavioral progress, facilitating quick, care and support audits.
                   </p>
                 </div>
               </div>
@@ -150,5 +146,6 @@ export default function DigitalCare() {
 
       </div>
     </section>
-  );
+  </div>
+);
 }

@@ -1,8 +1,14 @@
 import { motion } from "motion/react";
 import { UserCheck, ShieldCheck, Award, HeartPulse, Sparkles, BookOpen } from "lucide-react";
+import PageHero from "./PageHero.tsx";
 
-export default function Leadership() {
+interface LeadershipProps {
+  onNavigate?: (sectionId: string) => void;
+}
+
+export default function Leadership({ onNavigate }: LeadershipProps) {
   const leaders = [
+
     {
       name: "Salman Muhammad",
       role: "Managing Director & Strategic Lead",
@@ -23,35 +29,24 @@ export default function Leadership() {
     },
     {
       name: "Boston Murray",
-      role: "Registered Care Manager & Clinician Lead",
+      role: "CQC Nominated Individual",
       qualifications: ["Registered Nurse (RN - LD / MH)", "MSc Positive Behaviour Support", "CQC Certified Nominated Individual"],
-      xp: "A clinical leader with 15+ years managing crisis escalation, conducting PBS Functional Behavioral Audits, and implementing computerized clinical care models (Nourish/MDS).",
-      philosophy: "We must speak and understand the behavior of distress with deep clinical empathy. Restrictive practices are a failure of imagination. Our clinical focus is positive risk taking and emotional safety.",
+      xp: "A dedicated care quality lead with 15+ years managing crisis escalation, conducting PBS Functional Behavioral Assessments, and implementing computerized social care models (Nourish/MDS).",
+      philosophy: "We must speak and understand the behavior of distress with deep care empathy. Restrictive practices are a failure of imagination. Our primary focus is positive risk taking and emotional safety.",
       icon: HeartPulse,
       color: "border-teal-200 bg-teal-50 text-teal-700"
     }
   ];
 
   return (
-    <section id="leadership" className="py-24 bg-slate-50 border-t border-slate-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-20">
-          <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 font-mono block">
-            Executive Leadership & Governance
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-            Our Executive Team
-          </h2>
-          <div className="w-16 h-1 bg-emerald-600 mx-auto rounded-full" />
-          <p className="text-slate-600 text-sm">
-            PRO Care Homes is directed by an exceptional team carrying decades of combined experience across clinical nursing, CQC inspections, social care finance, and local government commissioning.
-          </p>
-        </div>
-
-        {/* Profiles Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div id="leadership-view" className="animate-fadeIn">
+      <PageHero sectionId="leadership" onNavigate={onNavigate} />
+      
+      <section id="leadership" className="py-20 bg-slate-50 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Profiles Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {leaders.map((leader, index) => {
             const Icon = leader.icon;
             return (
@@ -127,18 +122,15 @@ export default function Leadership() {
               <UserCheck className="w-8 h-8" />
             </span>
             <div>
-              <h4 className="font-bold text-slate-950 text-sm">Direct Clinical Oversight Guarantee</h4>
+              <h4 className="font-bold text-slate-950 text-sm">Direct Management Oversight Guarantee</h4>
               <p className="text-xs text-slate-500 max-w-xl">
-                Unlike mass-market financial providers, our strategic managers inspect operations on-site weekly. We maintain direct clinical accountability for CQC audits, MDT meetings, and safeguarding oversight.
+                Unlike mass-market financial providers, our strategic managers inspect operations on-site weekly. We maintain direct regulatory accountability for CQC audits, MDT meetings, and safeguarding oversight.
               </p>
             </div>
           </div>
           <button
-            onClick={() => {
-              const el = document.getElementById("contact");
-              if (el) el.scrollIntoView({ behavior: "smooth" });
-            }}
-            className="px-5 py-2.5 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-slate-800 transition"
+            onClick={() => onNavigate && onNavigate("contact")}
+            className="px-5 py-2.5 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-slate-800 transition cursor-pointer"
           >
             Request Management Call
           </button>
@@ -146,5 +138,6 @@ export default function Leadership() {
 
       </div>
     </section>
-  );
+  </div>
+);
 }

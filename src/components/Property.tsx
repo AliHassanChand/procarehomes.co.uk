@@ -1,9 +1,15 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { BedDouble, Sun, Wind, Palette, ShieldCheck, HeartHandshake, Eye, Sparkles } from "lucide-react";
+import PageHero from "./PageHero.tsx";
 
-export default function Property() {
+interface PropertyProps {
+  onNavigate?: (sectionId: string) => void;
+}
+
+export default function Property({ onNavigate }: PropertyProps) {
   const [selectedCategory, setSelectedCategory] = useState("all");
+
 
   const highlights = [
     {
@@ -18,7 +24,7 @@ export default function Property() {
         "Acoustically sound walls and triple-glazed windows to minimize unwanted sound stress",
         "Adaptable underfloor heating controls for custom tactile comfort schedules"
       ],
-      tagline: "Total privacy and personalized warmth designed around clinical sensory preferences."
+      tagline: "Total privacy and personalized warmth designed around individual sensory preferences."
     },
     {
       id: "sensory",
@@ -83,7 +89,7 @@ export default function Property() {
       icon: HeartHandshake,
       description: "A total guarantee against cold institutional sanitization.",
       details: [
-        "We avoid clinical white signage, stainless steel carts, or rigid wall notices",
+        "We avoid institutional signage, stainless steel carts, or rigid wall notices",
         "Photos of residents' triumphs, dynamic art paintings, and real plants fill the hallways",
         "The smells of home-baked bread, coffee, and customized meals instead of chemical disinfectants",
         "Personal door keys for residents who possess safe independent capacity"
@@ -97,25 +103,14 @@ export default function Property() {
     : highlights.filter(h => h.category === selectedCategory);
 
   return (
-    <section id="property" className="py-24 bg-white border-t border-slate-150">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <span className="text-xs font-bold uppercase tracking-wider text-sky-700 font-mono block">
-            Residential Environment Showcase
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-            Explore 6 Flags House
-          </h2>
-          <div className="w-16 h-1 bg-sky-600 mx-auto rounded-full" />
-          <p className="text-slate-600 text-sm">
-            Located in a quiet, welcoming UK neighborhood, 6 Flags House represents our flagship home — high-specification, safe, and emotionally holding.
-          </p>
-        </div>
-
-        {/* Filter Categories */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
+    <div id="property-view" className="animate-fadeIn">
+      <PageHero sectionId="property" onNavigate={onNavigate} />
+      
+      <section id="property" className="py-20 bg-white relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Filter Categories */}
+          <div className="flex flex-wrap justify-center gap-2 mb-12">
           {[
             { id: "all", label: "Entire Home Preview" },
             { id: "interior", label: "Interior Spaces" },
@@ -202,17 +197,18 @@ export default function Property() {
               We understand that choosing a home is a delicate milestone. Social workers, commissioners, and families are welcome to book Compatibility Visits to explore our sensory gardens and ambient common spaces.
             </p>
             <div className="pt-2">
-              <a
-                href="#contact"
-                className="inline-block px-6 py-3 bg-white text-emerald-950 font-bold rounded-xl text-xs hover:bg-sky-50 transition"
+              <button
+                onClick={() => onNavigate && onNavigate("contact")}
+                className="inline-block px-6 py-3 bg-white text-emerald-950 font-bold rounded-xl text-xs hover:bg-sky-50 transition cursor-pointer"
               >
                 Arrange a Visit to 6 Flags House
-              </a>
+              </button>
             </div>
           </div>
         </div>
 
       </div>
     </section>
-  );
+  </div>
+);
 }

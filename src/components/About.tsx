@@ -1,11 +1,16 @@
 import { motion } from "motion/react";
 import { Smile, HeartPulse, Sparkles, Compass, Shield, Group } from "lucide-react";
+import PageHero from "./PageHero.tsx";
 
-export default function About() {
+interface AboutProps {
+  onNavigate?: (sectionId: string) => void;
+}
+
+export default function About({ onNavigate }: AboutProps) {
   const values = [
     {
       title: "Compassion",
-      desc: "Delivering clinical support embedded in profound warmth, understanding, and personal warmth.",
+      desc: "Delivering support embedded in profound warmth, understanding, and personal growth.",
       icon: Smile,
       color: "bg-teal-50 text-teal-600 border-teal-100"
     },
@@ -42,32 +47,22 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-24 bg-white border-t border-slate-100 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-20">
-          <span className="text-xs font-bold uppercase tracking-wider text-sky-700 font-mono block">
-            Who We Are & What We Believe
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-            Our Vision, Mission & Core Values
-          </h2>
-          <div className="w-16 h-1 bg-sky-600 mx-auto rounded-full" />
-          <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-            PRO Care Homes Ltd (PRO-CH) was established with a singular focus: to de-institutionalise resident support so that our individuals experience a warm home environment while receiving healthcare delivered under stringent quality standards.
-          </p>
-        </div>
+    <div id="about-view" className="animate-fadeIn">
+      <PageHero sectionId="about" onNavigate={onNavigate} />
+      
+      <section id="about" className="py-20 bg-white relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Vision & Mission Split Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20 animate-fadeIn">
 
-        {/* Vision & Mission Split Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20 animate-fadeIn">
           {/* Vision card */}
           <div className="bg-sky-50/50 rounded-2xl p-8 border border-sky-100 space-y-4">
             <h3 className="text-xl font-bold text-sky-900 font-sans">
               Our Vision
             </h3>
             <p className="text-slate-700 text-sm leading-relaxed">
-              We envision a future where UK residential care is synonymous with empowerment, physical and psychological safety, and the development of personal self-sufficiency. By integrating clinical rigor with a genuine domestic feel, we strive to be the gold standard specialist provider for individuals with learning disabilities, autism spectrum conditions, and complex mental health needs.
+              We envision a future where UK residential care is synonymous with empowerment, physical and psychological safety, and the development of personal self-sufficiency. By integrating best-practice rigor with a genuine domestic feel, we strive to be the gold standard specialist provider for individuals with learning disabilities, autism spectrum conditions, and complex mental health needs.
             </p>
             <div className="pt-2">
               <span className="text-[11px] font-bold text-sky-800 uppercase tracking-wider font-mono">
@@ -139,5 +134,6 @@ export default function About() {
 
       </div>
     </section>
-  );
+  </div>
+);
 }

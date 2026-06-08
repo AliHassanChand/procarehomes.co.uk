@@ -9,7 +9,7 @@ export default function Hero({ onNavigate }: HeroProps) {
   return (
     <section
       id="hero"
-      className="relative min-h-screen pt-44 sm:pt-48 pb-16 flex items-center bg-gradient-to-br from-white via-warm-bg to-care-green/5 overflow-hidden"
+      className="relative min-h-screen pt-28 sm:pt-32 pb-12 flex items-center bg-gradient-to-br from-white via-warm-bg to-care-green/5 overflow-hidden"
     >
       {/* Absolute Decorative Blobs for premium ambiance */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-gov-blue/5 rounded-full blur-3xl -z-10" />
@@ -41,7 +41,7 @@ export default function Hero({ onNavigate }: HeroProps) {
               className="space-y-4"
             >
               <h1 className="text-4xl sm:text-5xl lg:text-6.5xl font-extrabold text-gov-blue tracking-tight leading-[1.08] font-sans">
-                Creating <span className="text-calm-blue">homes</span>, building <span className="text-calm-blue">independence</span> and supporting <span className="text-care-green underline decoration-premium-gold/60 decoration-wavy underline-offset-4">meaningful lives.</span>
+                Creating <span className="text-calm-blue">homes</span>, building <span className="text-calm-blue">independence</span> and supporting <span className="text-care-green border-b-2 border-premium-gold/40 pb-0.5">meaningful lives.</span>
               </h1>
               <p className="text-base sm:text-lg text-text-secondary max-w-xl font-normal leading-relaxed">
                 PRO Care Homes Ltd (PRO-CH) delivers premium, fully compliant specialist residential support for adults aged 18–65 with learning disabilities, autism spectrum conditions, and associated mental health needs. 
@@ -50,19 +50,49 @@ export default function Hero({ onNavigate }: HeroProps) {
 
             {/* CQC Pillar Badges */}
             <motion.div
+              id="cqc-badges-container"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="grid grid-cols-5 gap-2 max-w-lg"
+              className="grid grid-cols-5 gap-2 sm:gap-3 max-w-xl"
             >
               {[
-                { name: "Safe", color: "bg-brand-error/10 text-brand-error border-brand-error/20" },
-                { name: "Effective", color: "bg-gov-blue/10 text-gov-blue border-gov-blue/20" },
-                { name: "Caring", color: "bg-care-green/10 text-care-green border-care-green/20" },
-                { name: "Responsive", color: "bg-brand-warning/10 text-brand-warning border-brand-warning/20" },
-                { name: "Well-Led", color: "bg-premium-gold/15 text-[#8A7043] border-premium-gold/25" }
+                { 
+                  name: "Safe", 
+                  bg: "bg-[#FFF5F5]/60 hover:bg-[#FFF5F5]", 
+                  text: "text-[#B33A3A]", 
+                  border: "border-[#FAD2D2]" 
+                },
+                { 
+                  name: "Effective", 
+                  bg: "bg-[#F0F5FA]/60 hover:bg-[#F0F5FA]", 
+                  text: "text-[#1E4E7C]", 
+                  border: "border-[#D0E1F0]" 
+                },
+                { 
+                  name: "Caring", 
+                  bg: "bg-[#EAF5F2]/60 hover:bg-[#EAF5F2]", 
+                  text: "text-[#286354]", 
+                  border: "border-[#C7E4DC]" 
+                },
+                { 
+                  name: "Responsive", 
+                  bg: "bg-[#FFF9EE]/60 hover:bg-[#FFF9EE]", 
+                  text: "text-[#A26D19]", 
+                  border: "border-[#F6E3C4]" 
+                },
+                { 
+                  name: "Well-Led", 
+                  bg: "bg-[#FAF6EE]/60 hover:bg-[#FAF6EE]", 
+                  text: "text-[#886D43]", 
+                  border: "border-[#EDE3CD]" 
+                }
               ].map((pill, idx) => (
-                <div key={idx} className={`text-center py-2.5 px-1 border rounded-lg text-xs font-bold ${pill.color} shadow-xs`}>
+                <div 
+                  key={idx} 
+                  id={`cqc-badge-${pill.name.toLowerCase()}`}
+                  className={`py-3.5 px-1 text-center border rounded-xl font-extrabold text-[11px] sm:text-xs tracking-tight transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md cursor-default backdrop-blur-xs ${pill.bg} ${pill.border} ${pill.text}`}
+                >
                   {pill.name}
                 </div>
               ))}

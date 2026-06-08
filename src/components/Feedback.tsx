@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import { Star, MessageSquareCode, Sparkles, Send, CheckCircle2 } from "lucide-react";
+import PageHero from "./PageHero.tsx";
 
-export default function Feedback() {
+interface FeedbackProps {
+  onNavigate?: (sectionId: string) => void;
+}
+
+export default function Feedback({ onNavigate }: FeedbackProps) {
   const [formData, setFormData] = useState({
+
     name: "",
     relationship: "Family Member / Circle of Care",
     rating: 5,
@@ -49,25 +55,14 @@ export default function Feedback() {
   };
 
   return (
-    <section id="feedback" className="py-24 bg-slate-50 border-t border-slate-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-20">
-          <span className="text-xs font-bold uppercase tracking-wider text-sky-700 font-mono block">
-            Quality Assurance & Stakeholder Voice
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-            Family Feedback & Quality Indices
-          </h2>
-          <div className="w-16 h-1 bg-sky-600 mx-auto rounded-full" />
-          <p className="text-slate-600 text-sm">
-            We are dedicated to continuous co-production. We survey families, residents, and social workers systematically to optimize our support models.
-          </p>
-        </div>
-
-        {/* Live Statistcs Bento Row */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 text-slate-800 text-center">
+    <div id="feedback-view" className="animate-fadeIn">
+      <PageHero sectionId="feedback" onNavigate={onNavigate} />
+      
+      <section id="feedback" className="py-20 bg-slate-50 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Live Statistcs Bento Row */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 text-slate-800 text-center">
           {stats.map((stat, idx) => (
             <div key={idx} className="bg-white border rounded-2xl p-6 shadow-xs space-y-1 hover:border-sky-300 transition duration-300">
               <span className="text-3xl font-extrabold text-sky-600 block font-mono">{stat.value}</span>
@@ -211,5 +206,6 @@ export default function Feedback() {
 
       </div>
     </section>
-  );
+  </div>
+);
 }

@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import { Users, BookOpen, ShieldCheck, Heart, Send, CheckCircle2, Star } from "lucide-react";
+import PageHero from "./PageHero.tsx";
 
-export default function Careers() {
+interface CareersProps {
+  onNavigate?: (sectionId: string) => void;
+}
+
+export default function Careers({ onNavigate }: CareersProps) {
   const [formData, setFormData] = useState({
+
     name: "",
     email: "",
     phone: "",
@@ -59,32 +65,21 @@ export default function Careers() {
   };
 
   return (
-    <section id="careers" className="py-24 bg-white border-t border-slate-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-20">
-          <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 font-mono block">
-            Careers & Professional Development
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-            Join Our Compassionate Care Workforce
-          </h2>
-          <div className="w-16 h-1 bg-emerald-600 mx-auto rounded-full" />
-          <p className="text-slate-600 text-sm">
-            At PRO Care Homes, we do not employ casual carers; we recruit specialist, values-driven practitioners eager to build a true home and foster durable independence.
-          </p>
-        </div>
-
-        {/* Value-Based Recruitment Pillar Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20 text-slate-800">
+    <div id="careers-view" className="animate-fadeIn">
+      <PageHero sectionId="careers" onNavigate={onNavigate} />
+      
+      <section id="careers" className="py-20 bg-white relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Value-Based Recruitment Pillar Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20 text-slate-800">
           <div className="bg-sky-50/50 p-6 rounded-2xl border border-sky-100 space-y-3">
             <div className="p-2.5 bg-sky-100 text-sky-800 rounded-xl w-fit">
               <Heart className="w-5 h-5" />
             </div>
             <h4 className="font-bold text-sm">Values-First Hiring</h4>
             <p className="text-xs text-slate-600 leading-relaxed">
-              We screen candidates for resilience, warmth, and adherence to human rights before technical qualifications. We can train clinical skills, but compassion is a prerequisite.
+              We screen candidates for resilience, warmth, and adherence to human rights before technical qualifications. We can train care skills, but compassion is a prerequisite.
             </p>
           </div>
 
@@ -163,7 +158,7 @@ export default function Careers() {
                   </div>
                   <h4 className="text-base font-bold text-emerald-950">Application Statement Received</h4>
                   <p className="text-slate-700 text-xs leading-relaxed max-w-sm mx-auto">
-                    Thank you, <strong>{formData.name}</strong>. Our clinician team at PRO Care Homes will review your background and compatibility statement. We will reach out within 48 business hours to arrange a diagnostic values interview.
+                    Thank you, <strong>{formData.name}</strong>. Our support team at PRO Care Homes will review your background and compatibility statement. We will reach out within 48 business hours to arrange a structured values interview.
                   </p>
                   <button
                     onClick={() => {
@@ -312,5 +307,6 @@ export default function Careers() {
 
       </div>
     </section>
-  );
+  </div>
+);
 }

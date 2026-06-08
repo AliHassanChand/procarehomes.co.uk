@@ -84,36 +84,36 @@ export default function App() {
 
     switch (activeSection) {
       case "about":
-        return <About />;
+        return <About onNavigate={handleNavigate} />;
       case "model-of-care":
-        return <ModelOfCare />;
+        return <ModelOfCare onNavigate={handleNavigate} />;
       case "services-hub":
         return <Services onNavigate={handleNavigate} />;
       case "property":
-        return <Property />;
+        return <Property onNavigate={handleNavigate} />;
       case "leadership":
-        return <Leadership />;
+        return <Leadership onNavigate={handleNavigate} />;
       case "governance":
         return (
           <>
-            <Governance />
-            <DigitalCare />
+            <Governance onNavigate={handleNavigate} />
+            <DigitalCare onNavigate={handleNavigate} />
           </>
         );
       case "careers":
-        return <Careers />;
+        return <Careers onNavigate={handleNavigate} />;
       case "referrals":
-        return <Referrals />;
+        return <Referrals onNavigate={handleNavigate} />;
       case "policies":
-        return <Policies />;
+        return <Policies onNavigate={handleNavigate} />;
       case "contact":
-        return <Contact />;
+        return <Contact onNavigate={handleNavigate} />;
       case "feedback":
-        return <Feedback />;
+        return <Feedback onNavigate={handleNavigate} />;
       case "digital":
-        return <DigitalCare />;
+        return <DigitalCare onNavigate={handleNavigate} />;
       case "community":
-        return <Community />;
+        return <Community onNavigate={handleNavigate} />;
       case "hero":
       case "home":
       default:
@@ -134,16 +134,16 @@ export default function App() {
       },
       {
         id: "model-of-care",
-        title: "Clinical Model of Care",
+        title: "Quality Support Framework",
         desc: "Underpinned by trauma-informed principles, active choices, Positive Behaviour Support and risk empowerment.",
         icon: BrainCircuit,
-        badge: "Specialist Science",
+        badge: "Specialist Support",
         accent: "border-[#5E8B7E]/20 bg-[#5E8B7E]/5 text-[#5E8B7E]"
       },
       {
         id: "services-hub",
         title: "Support Specialties Portfolios",
-        desc: "8 specialized clinical pathways for intellectual developmental challenges, dual-diagnosis and personal care.",
+        desc: "Structured support pathways for developmental challenges, emotional stability and personal care.",
         icon: BarChart3,
         badge: "8 Pathways",
         accent: "border-emerald-100 bg-emerald-50/30 text-emerald-700"
@@ -209,7 +209,7 @@ export default function App() {
               </h2>
               <div className="w-16 h-1 bg-premium-gold mx-auto rounded-full" />
               <p className="text-text-secondary text-xs sm:text-sm max-w-xl mx-auto leading-relaxed">
-                Rather than an overloaded reading grid, we divide our complex healthcare pathways into dedicated digital volumes. Explore our clinical standards below:
+                Rather than an overloaded reading grid, we divide our complex support pathways into dedicated digital volumes. Explore our care quality standards below:
               </p>
             </div>
 
@@ -498,7 +498,7 @@ export default function App() {
               </h2>
               <div className="w-16 h-1 bg-[#5E8B7E] mx-auto rounded-full" />
               <p className="text-text-secondary text-xs sm:text-sm max-w-xl mx-auto leading-relaxed">
-                Operating with absolute clinical integrity, strict statutory transparency, and constant multidisciplinary team supervision to satisfy critical standards of Care Quality Commission (CQC) lines of inquiry.
+                Operating with absolute care quality integrity, strict statutory transparency, and constant multidisciplinary team supervision to satisfy critical standards of Care Quality Commission (CQC) lines of inquiry.
               </p>
             </div>
 
@@ -522,7 +522,7 @@ export default function App() {
                   </h3>
                   
                   <p className="text-[11px] text-slate-300 leading-relaxed">
-                    Under the direct operational oversight of Salman Muhammad and Clinical Director Boston Murray, PRO Care Homes complies with the Health and Social Care Act regulations. We practice proactive clinical oversight to maintain secure environments.
+                    Under the direct operational oversight of Salman Muhammad and Nominated Individual Boston Murray, PRO Care Homes complies with the Health and Social Care Act regulations. We practice proactive support oversight to maintain secure environments.
                   </p>
 
                   <div className="space-y-3.5 border-t border-white/10 pt-6 text-[11px] text-slate-300">
@@ -646,7 +646,7 @@ export default function App() {
         </a>
       </div>
 
-      {/* 1. Universal Clinical Header */}
+      {/* 1. Universal Header */}
       <Header onNavigate={handleNavigate} activeSection={activeSection} />
 
       {/* 2. Major Routed Layout Section */}

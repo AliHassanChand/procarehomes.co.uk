@@ -1,8 +1,14 @@
 import { useState } from "react";
 import { ShieldCheck, Eye, Compass, HeartHandshake, Award, FileText, CheckCircle2, ChevronRight, AlertTriangle } from "lucide-react";
+import PageHero from "./PageHero.tsx";
 
-export default function Governance() {
+interface GovernanceProps {
+  onNavigate?: (sectionId: string) => void;
+}
+
+export default function Governance({ onNavigate }: GovernanceProps) {
   const [selectedDomain, setSelectedDomain] = useState("safe");
+
 
   const domains = [
     {
@@ -24,7 +30,7 @@ export default function Governance() {
       title: "Effective",
       cqcStatement: "How we ensure care achieves outstanding outcomes, skill development, and physical wellness.",
       bullets: [
-        "Multi-disciplinary clinical oversight involving community mental health specialists and speech therapy.",
+        "Multi-disciplinary care quality oversight involving community mental health specialists and speech therapy.",
         "Active support model breaking down complex milestones into fun, achievable tasks.",
         "Detailed, custom sensory diets mapped out by registered occupational therapists.",
         "Nutritious, customized menu templates reviewed for dietetics, texture suitability, and choice."
@@ -76,25 +82,14 @@ export default function Governance() {
   const CurrentIcon = currentDomain.icon;
 
   return (
-    <section id="governance" className="py-24 bg-white border-t border-slate-150">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <span className="text-xs font-bold uppercase tracking-wider text-sky-700 font-mono block">
-            Regulatory Framework & Quality Audits
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-            CQC Compliance & Clinical Governance
-          </h2>
-          <div className="w-16 h-1 bg-sky-600 mx-auto rounded-full" />
-          <p className="text-slate-600 text-sm">
-            PRO Care Homes operates under the highest levels of clinical risk management, auditing, and CQC fundamental alignment. Our governance protocols are built for real inspections.
-          </p>
-        </div>
-
-        {/* 5 Key Questions CQC Selector Layout */}
-        <div className="bg-slate-9 border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-lg mb-16">
+    <div id="governance-view" className="animate-fadeIn">
+      <PageHero sectionId="governance" onNavigate={onNavigate} />
+      
+      <section id="governance" className="py-20 bg-white relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* 5 Key Questions CQC Selector Layout */}
+          <div className="bg-slate-9 border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-lg mb-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
             
             {/* Left menu selector Column */}
@@ -244,5 +239,6 @@ export default function Governance() {
 
       </div>
     </section>
-  );
+  </div>
+);
 }
