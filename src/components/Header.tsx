@@ -317,7 +317,7 @@ export default function Header({ onNavigate, activeSection }: HeaderProps) {
           >
             <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg overflow-hidden bg-white group-hover:scale-105 transition">
   <img
-    src="/PRO-CH Logo.png"
+    src="/PRO-CH Logo.jpeg"
     alt="ProCare Homes"
     className="w-full h-full object-contain"
   />
