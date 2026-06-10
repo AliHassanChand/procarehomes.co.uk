@@ -1,3 +1,4 @@
+import Logo from "./Logo";
 import { ShieldCheck, Mail, Phone, ExternalLink } from "lucide-react";
 
 export default function Footer({ onNavigate }: { onNavigate: (id: string) => void }) {
@@ -12,19 +13,7 @@ export default function Footer({ onNavigate }: { onNavigate: (id: string) => voi
           
           {/* Column A: Brand Info */}
           <div className="md:col-span-4 space-y-4">
-            <div className="flex items-center space-x-2.5">
-              <div className="w-9 h-9 bg-gov-blue rounded-xl flex items-center justify-center text-white shadow-md">
-                <ShieldCheck className="w-5.5 h-5.5" />
-              </div>
-              <div>
-                <span className="text-lg font-bold text-white block tracking-tight font-sans">
-                  PRO <span className="text-care-green">Care Homes</span>
-                </span>
-                <span className="text-[9px] uppercase tracking-wider text-premium-gold font-mono block -mt-1 font-semibold">
-                  PRO Care Homes Ltd • CQC Registered
-                </span>
-              </div>
-            </div>
+            <Logo className="w-9 h-9" lightText={true} />
             
             <p className="text-slate-400 leading-relaxed text-[11px]">
               Specialist, de-institutionalised residential support for adults with Learning Disabilities, Autism Spectrum Conditions, and complex dual-diagnosis Mental Health needs in the UK.

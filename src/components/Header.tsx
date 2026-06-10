@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import Logo from "./Logo";
 import { 
   ShieldCheck, 
   CalendarRange, 
@@ -313,23 +314,9 @@ export default function Header({ onNavigate, activeSection }: HeaderProps) {
           {/* Brand/Logo Section Left */}
           <div 
             onClick={() => onNavigate("hero")} 
-            className="flex items-center space-x-2.5 cursor-pointer group flex-shrink-0"
+            className="cursor-pointer group flex-shrink-0"
           >
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg overflow-hidden bg-white group-hover:scale-105 transition">
-  <img
-    src="/logo.jpeg"
-    alt="ProCare Homes"
-    className="w-full h-full object-contain"
-  />
-</div>
-            <div>
-              <span className="text-xl font-extrabold text-gov-blue tracking-tight block font-sans">
-                PRO <span className="text-care-green">Care Homes</span>
-              </span>
-              <span className="text-[9px] font-mono tracking-widest uppercase text-premium-gold font-bold block -mt-1">
-                LTD • CARE QUALITY & INDEPENDENCE
-              </span>
-            </div>
+            <Logo className="w-10 h-10" />
           </div>
 
           {/* Core Navigation Center */}
