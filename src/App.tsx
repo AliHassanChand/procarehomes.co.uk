@@ -46,7 +46,10 @@ import {
   ClipboardCheck,
   Activity,
   CheckCircle2,
-  CalendarRange
+  CalendarRange,
+  Send,
+  FileDown,
+  Clock
 } from "lucide-react";
 
 export default function App() {
@@ -54,6 +57,17 @@ export default function App() {
     const hash = window.location.hash.replace("#", "");
     return hash || "hero";
   });
+
+  // Commissioner interactive gateway state variables
+  const [commReferralAge, setCommReferralAge] = useState<string>("18-25");
+  const [commReferralNeeds, setCommReferralNeeds] = useState<string>("learning-difficulty");
+  const [commReferralFunding, setCommReferralFunding] = useState<string>("chc");
+  const [commReferralPriority, setCommReferralPriority] = useState<string>("standard");
+  const [commReferralNotes, setCommReferralNotes] = useState<string>("");
+  const [commReferralEmail, setCommReferralEmail] = useState<string>("");
+  const [commIsSubmitting, setCommIsSubmitting] = useState<boolean>(false);
+  const [commSubmitSuccess, setCommSubmitSuccess] = useState<boolean>(false);
+  const [commActiveTab, setCommActiveTab] = useState<string>("admission"); // "admission" vs "homely"
 
   const handleNavigate = (sectionId: string) => {
     setActiveSection(sectionId);
@@ -279,203 +293,398 @@ export default function App() {
           </div>
         </section>
 
-        {/* SECTION 1: Life at PRO Care Homes */}
-        <section className="py-24 bg-[#FAFBFD] relative overflow-hidden border-t border-slate-100">
-          {/* Subtle light background circles representing low-arousal sensory bubbles */}
-          <div className="absolute top-1/3 left-0 w-96 h-96 bg-[#7DB6A3]/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-gov-blue/5 rounded-full blur-3xl" />
+        {/* SECTION 1: Commissioner Hub & Placement Pathway Evaluation */}
+        <section id="commissioners-hub" className="py-24 bg-[#FAFBFD] relative overflow-hidden border-t border-slate-100">
+          {/* Decorative ambient background glows */}
+          <div className="absolute top-1/3 left-0 w-96 h-96 bg-[#7DB6A3]/10 rounded-full blur-3xl -z-10" />
+          <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-gov-blue/5 rounded-full blur-3xl -z-10" />
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
               
-              {/* Left Column: Storytelling & Key metrics */}
+              {/* Left Column: Commissioner Information Hub & Live Environments */}
               <div className="lg:col-span-6 space-y-6">
-                <div className="inline-flex items-center space-x-2 bg-[#5E8B7E]/15 border border-[#5E8B7E]/25 px-3 py-1 rounded-full">
-                  <Smile className="w-3.5 h-3.5 text-[#5E8B7E] animate-pulse" />
+                <div className="inline-flex items-center space-x-2 bg-[#5E8B7E]/10 border border-[#5E8B7E]/20 px-3.5 py-1.5 rounded-full">
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#5E8B7E]" />
                   <span className="text-[10px] font-bold uppercase tracking-wider font-mono text-[#5E8B7E]">
-                    Therapeutic Lifestyle Focus
+                    Commissioner & Client Strategic Gateway
                   </span>
                 </div>
                 
                 <h2 className="text-3xl sm:text-4xl font-extrabold text-gov-blue tracking-tight leading-tight">
-                  Life at PRO Care Homes: Cultivating Dignity & Belonging
+                  Accelerated Referrals, Safeguarded Placements
                 </h2>
                 
                 <p className="text-text-secondary text-xs sm:text-sm leading-relaxed">
-                  Support is never just about physical safety; it is about building a fulfilling, self-directed future where every person feels a genuine sense of ownership over their lives. At <strong className="font-semibold text-gov-blue">6 Flags House</strong>, we foster a companionable, high-trust environment that promotes micro-achievements, emotional resilience, and organic local friendships.
+                  PRO Care Homes is built entirely for resilience. We remove commissioning risk by offering structured compatibility guarantees, rapid pre-admission assessments within <strong className="font-semibold text-gov-blue">48 hours</strong>, and an absolute zero short-notice eviction policy.
                 </p>
 
-                <p className="text-text-secondary text-xs sm:text-sm leading-relaxed">
-                  Every resident co-produces their weekly visual schedule with their dedicated keyworker, aligning learning challenges with hobbies. Moving away from standard sterile institutional rotas, we honor natural circadian rhythms, dynamic sensory triggers, and private space configurations.
-                </p>
-
-                {/* Sub-features Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pb-4">
-                  
-                  {/* Card 1 */}
-                  <div className="p-4 bg-white border border-slate-100 hover:border-[#5E8B7E]/30 transition duration-200 rounded-2xl shadow-xs group">
-                    <div className="flex items-center space-x-3">
-                      <span className="p-2.5 rounded-xl bg-sky-50 text-sky-700 group-hover:bg-[#5E8B7E]/10 group-hover:text-[#5E8B7E] transition duration-200">
-                        <Compass className="w-4.5 h-4.5" />
-                      </span>
-                      <div>
-                        <h4 className="font-extrabold text-xs text-gov-blue">Community Engagement</h4>
-                        <p className="text-[10.5px] text-text-secondary mt-0.5">Active local high-street pacing & transit cards.</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Card 2 */}
-                  <div className="p-4 bg-white border border-slate-100 hover:border-[#5E8B7E]/30 transition duration-200 rounded-2xl shadow-xs group">
-                    <div className="flex items-center space-x-3">
-                      <span className="p-2.5 rounded-xl bg-rose-50 text-rose-750 group-hover:bg-[#5E8B7E]/10 group-hover:text-[#5E8B7E] transition duration-200">
-                        <Heart className="w-4.5 h-4.5" />
-                      </span>
-                      <div>
-                        <h4 className="font-extrabold text-xs text-gov-blue">Emotional Wellbeing</h4>
-                        <p className="text-[10.5px] text-text-secondary mt-0.5">Quiet sensory diets mapped to cognitive comfort.</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Card 3 */}
-                  <div className="p-4 bg-white border border-slate-100 hover:border-[#5E8B7E]/30 transition duration-200 rounded-2xl shadow-xs group">
-                    <div className="flex items-center space-x-3">
-                      <span className="p-2.5 rounded-xl bg-emerald-50 text-emerald-700 group-hover:bg-[#5E8B7E]/10 group-hover:text-[#5E8B7E] transition duration-200">
-                        <Sparkles className="w-4.5 h-4.5" />
-                      </span>
-                      <div>
-                        <h4 className="font-extrabold text-xs text-gov-blue">Independence Building</h4>
-                        <p className="text-[10.5px] text-text-secondary mt-0.5">32-point milestone cooking & budgeting academy.</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Card 4 */}
-                  <div className="p-4 bg-white border border-slate-100 hover:border-[#5E8B7E]/30 transition duration-200 rounded-2xl shadow-xs group">
-                    <div className="flex items-center space-x-3">
-                      <span className="p-2.5 rounded-xl bg-amber-50 text-amber-850 group-hover:bg-[#5E8B7E]/10 group-hover:text-[#5E8B7E] transition duration-200">
-                        <Coffee className="w-4.5 h-4.5" />
-                      </span>
-                      <div>
-                        <h4 className="font-extrabold text-xs text-gov-blue">Daily Living Support</h4>
-                        <p className="text-[10.5px] text-text-secondary mt-0.5">Custom hygiene schedules honoring dignity.</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Card 5 */}
-                  <div className="p-4 bg-white border border-slate-100 hover:border-[#5E8B7E]/30 transition duration-200 rounded-2xl shadow-xs group">
-                    <div className="flex items-center space-x-3">
-                      <span className="p-2.5 rounded-xl bg-indigo-50 text-indigo-700 group-hover:bg-[#5E8B7E]/10 group-hover:text-[#5E8B7E] transition duration-200">
-                        <Users className="w-4.5 h-4.5" />
-                      </span>
-                      <div>
-                        <h4 className="font-extrabold text-xs text-gov-blue">Positive Relationships</h4>
-                        <p className="text-[10.5px] text-text-secondary mt-0.5">Shared companionable dining & game evenings.</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Card 6 */}
-                  <div className="p-4 bg-white border border-slate-100 hover:border-[#5E8B7E]/30 transition duration-200 rounded-2xl shadow-xs group">
-                    <div className="flex items-center space-x-3">
-                      <span className="p-2.5 rounded-xl bg-teal-50 text-teal-700 group-hover:bg-[#5E8B7E]/10 group-hover:text-[#5E8B7E] transition duration-200">
-                        <ShieldCheck className="w-4.5 h-4.5" />
-                      </span>
-                      <div>
-                        <h4 className="font-extrabold text-xs text-gov-blue">Safe Support Space</h4>
-                        <p className="text-[10.5px] text-text-secondary mt-0.5">Concealed safeguarding engineering elements.</p>
-                      </div>
-                    </div>
-                  </div>
-
+                {/* Tab Selector - Professional & Interactive Theme */}
+                <div className="flex p-1 bg-slate-100 rounded-xl max-w-sm">
+                  <button
+                    onClick={() => setCommActiveTab("admission")}
+                    className={`flex-1 py-2 px-3 text-xs font-bold rounded-lg transition-all ${
+                      commActiveTab === "admission"
+                        ? "bg-white text-gov-blue shadow-xs"
+                        : "text-slate-500 hover:text-gov-blue text-xs cursor-pointer"
+                    }`}
+                  >
+                    Audits & Referrals Info
+                  </button>
+                  <button
+                    onClick={() => setCommActiveTab("homely")}
+                    className={`flex-1 py-2 px-3 text-xs font-bold rounded-lg transition-all ${
+                      commActiveTab === "homely"
+                        ? "bg-white text-gov-blue shadow-xs"
+                        : "text-slate-500 hover:text-gov-blue text-xs cursor-pointer"
+                    }`}
+                  >
+                    The 6 Flags Homely Spec
+                  </button>
                 </div>
+
+                {commActiveTab === "admission" ? (
+                  <div className="space-y-4 animate-fadeIn">
+                    <p className="text-[11.5px] text-slate-500 leading-relaxed">
+                      We collaborate with CCGs, ICBs, and local councils to ensure perfect transitions. Our staff profiles and therapeutic infrastructure prevent crisis readmissions.
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                      <div className="p-4 bg-white border border-slate-100 rounded-xl hover:border-[#5E8B7E]/25 transition duration-150">
+                        <h4 className="font-extrabold text-xs text-gov-blue flex items-center space-x-1.5">
+                          <CheckCircle2 className="w-4 h-4 text-[#5E8B7E]" />
+                          <span>48 Hours Assessment Lock</span>
+                        </h4>
+                        <p className="text-[10px] text-text-secondary mt-1">Full multi-disciplinary assessment completed by our clinical leaders inside 48 hours.</p>
+                      </div>
+                      <div className="p-4 bg-white border border-slate-100 rounded-xl hover:border-[#5E8B7E]/25 transition duration-150">
+                        <h4 className="font-extrabold text-xs text-gov-blue flex items-center space-x-1.5">
+                          <CheckCircle2 className="w-4 h-4 text-[#5E8B7E]" />
+                          <span>MDT Transitions Spec</span>
+                        </h4>
+                        <p className="text-[10px] text-text-secondary mt-1">Complete compatibility reports, PBS plan matching, and local transition schedules co-produced.</p>
+                      </div>
+                      <div className="p-4 bg-white border border-slate-100 rounded-xl hover:border-[#5E8B7E]/25 transition duration-150">
+                        <h4 className="font-extrabold text-xs text-gov-blue flex items-center space-x-1.5">
+                          <CheckCircle2 className="w-4 h-4 text-[#5E8B7E]" />
+                          <span>Zero Placement Exclusion</span>
+                        </h4>
+                        <p className="text-[10px] text-text-secondary mt-1">Rigorous safety frameworks and continuous behavioral coaching prevent short-notice referral breakdowns.</p>
+                      </div>
+                      <div className="p-4 bg-white border border-slate-100 rounded-xl hover:border-[#5E8B7E]/25 transition duration-150">
+                        <h4 className="font-extrabold text-xs text-gov-blue flex items-center space-x-1.5">
+                          <CheckCircle2 className="w-4 h-4 text-[#5E8B7E]" />
+                          <span>Statutory Compliance Line</span>
+                        </h4>
+                        <p className="text-[10px] text-text-secondary mt-1">Rigorous electronic Medication administration (eMar) and Regulation 17 daily quality reporting.</p>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="space-y-4 animate-fadeIn">
+                    <p className="text-[11.5px] text-slate-500 leading-relaxed">
+                      Every resident co-produces their schedule. Users and families see their loved ones thrive under a safe, independent, and high-trust framework style space:
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                      <div className="p-4 bg-white border border-slate-100 rounded-xl hover:border-[#5E8B7E]/25 transition">
+                        <h4 className="font-extrabold text-xs text-gov-blue flex items-center space-x-1.5">
+                          <Compass className="w-4 h-4 text-sky-600" />
+                          <span>Community Engagement</span>
+                        </h4>
+                        <p className="text-[10px] text-text-secondary mt-1">Active transit training, visual scheduling, and high-street confidence routes inside local settings.</p>
+                      </div>
+                      <div className="p-4 bg-white border border-slate-100 rounded-xl hover:border-[#5E8B7E]/25 transition">
+                        <h4 className="font-extrabold text-xs text-gov-blue flex items-center space-x-1.5">
+                          <Sparkles className="w-4 h-4 text-amber-500" />
+                          <span>Sensory Calibration</span>
+                        </h4>
+                        <p className="text-[10px] text-text-secondary mt-1">Low-arousal lighting, custom acoustical layouts, private breakout suites, and therapeutic bubbles.</p>
+                      </div>
+                      <div className="p-4 bg-white border border-slate-100 rounded-xl hover:border-[#5E8B7E]/25 transition">
+                        <h4 className="font-extrabold text-xs text-gov-blue flex items-center space-x-1.5">
+                          <Coffee className="w-4 h-4 text-[#5E8B7E]" />
+                          <span>Teaching Cooking Zone</span>
+                        </h4>
+                        <p className="text-[10px] text-text-secondary mt-1">Cool-touch induction teaching kitchen that rewards 32 specific independence and safe food steps.</p>
+                      </div>
+                      <div className="p-4 bg-white border border-slate-100 rounded-xl hover:border-[#5E8B7E]/25 transition">
+                        <h4 className="font-extrabold text-xs text-gov-blue flex items-center space-x-1.5">
+                          <Heart className="w-4 h-4 text-rose-500" />
+                          <span>Person-First Welfare</span>
+                        </h4>
+                        <p className="text-[10px] text-text-secondary mt-1">Dignified daily routine assistance focused on hygiene habits and continuous micro-milestone tracking.</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
               
-              {/* Right Column: Dynamic visual canvas */}
-              <div className="lg:col-span-6 relative flex justify-center">
-                
-                {/* Decorative glow and border frames */}
-                <div className="absolute inset-x-0 bottom-0 h-72 bg-gradient-to-tr from-sky-100 to-[#7DB6A3]/10 rounded-[40px] blur-3xl -z-10" />
-                
-                {/* Central Visual Frame Container */}
-                <div className="w-full max-w-md bg-white border-2 border-slate-105 shadow-xl rounded-[36px] overflow-hidden p-6 space-y-6">
+              {/* Right Column: Dynamic Interactive Compatibility / Compatibility Auditor Form */}
+              <div className="lg:col-span-6 animate-fadeIn">
+                <div className="w-full bg-white border border-[#5E8B7E]/20 shadow-xl rounded-3xl p-6 sm:p-8 space-y-6 relative overflow-hidden">
                   
-                  {/* Top Bar describing environment */}
+                  {/* Decorative green accents */}
+                  <div className="absolute top-0 left-0 right-0 h-1.5 bg-[#5E8B7E]" />
+                  
+                  {/* Card Title & Header */}
                   <div className="flex items-center justify-between border-b border-slate-100 pb-4">
-                    <div className="flex items-center space-x-2.5">
-                      <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-                      <span className="text-[10px] font-bold font-mono text-slate-500 uppercase tracking-wider">6 Flags Live Environment status</span>
+                    <div className="space-y-0.5">
+                      <h3 className="text-xs sm:text-sm font-black text-gov-blue flex items-center space-x-2">
+                        <Activity className="w-4 h-4 text-[#5E8B7E]" />
+                        <span>Adaptive Compatibility Evaluator</span>
+                      </h3>
+                      <p className="text-[10px] text-slate-400">Evaluate placement alignment with our 6 Flags spec</p>
                     </div>
-                    <span className="text-[9px] font-bold bg-[#7DB6A3]/15 text-emerald-800 px-2 py-0.5 rounded-md font-mono">
-                      Homely Grade
+                    <span className="text-[8px] bg-[#5E8B7E]/10 text-[#5E8B7E] font-bold px-2.5 py-1 rounded-md font-mono uppercase">
+                      NHS Approved Spec
                     </span>
                   </div>
 
-                  {/* Nested Layout Blocks (Virtual Floorplan & Activity Indicator) */}
-                  <div className="grid grid-cols-2 gap-3">
-                    
-                    {/* Zone A: Therapeutic Lounge */}
-                    <div className="bg-gradient-to-br from-slate-50 to-slate-100 p-4 rounded-2xl border border-slate-150/60 text-center space-y-2">
-                      <Home className="w-5 h-5 mx-auto text-sky-600" />
-                      <h5 className="font-extrabold text-[10.5px] text-gov-blue">Therapeutic Lounge</h5>
-                      <p className="text-[9.5px] text-slate-450">Soft acoustics & circadian low-glare LEDs</p>
-                    </div>
-
-                    {/* Zone B: Sensory Oasis Cabin */}
-                    <div className="bg-gradient-to-br from-slate-50 to-slate-100 p-4 rounded-2xl border border-slate-150/60 text-center space-y-2">
-                      <Sparkles className="w-5 h-5 mx-auto text-amber-500" />
-                      <h5 className="font-extrabold text-[10.5px] text-gov-blue">Sensory Escape</h5>
-                      <p className="text-[9.5px] text-slate-450">Bubble columns & deep-pressure chairs</p>
-                    </div>
-
-                    {/* Zone C: Active Kitchen Hub */}
-                    <div className="bg-gradient-to-br from-[#5E8B7E]/5 to-[#5E8B7E]/10 p-4 rounded-2xl border border-[#5E8B7E]/15 text-center col-span-2 space-y-2 relative overflow-hidden animate-pulse">
-                      <div className="absolute top-2 right-2 w-3.5 h-3.5 rounded-full bg-[#5E8B7E]/20 flex items-center justify-center font-bold text-[8px] text-[#5E8B7E]">
-                        ★
+                  {!commSubmitSuccess ? (
+                    <div className="space-y-4">
+                      
+                      {/* Selection 1: Needs */}
+                      <div className="space-y-1.5">
+                        <label className="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider font-mono">
+                          Primary Support Specialty Needed
+                        </label>
+                        <div className="grid grid-cols-2 gap-2">
+                          {[
+                            { id: "learning-difficulty", label: "Learning Disabilities" },
+                            { id: "autism-sensory", label: "Autism (Sensory Safe)" },
+                            { id: "mental-health", label: "Complex Mental Health" },
+                            { id: "challenging-behavior", label: "Coaching / PBS Tier" }
+                          ].map((opt) => (
+                            <button
+                              key={opt.id}
+                              type="button"
+                              onClick={() => setCommReferralNeeds(opt.id)}
+                              className={`text-left p-3 rounded-xl border text-[11px] font-bold leading-tight transition-all duration-150 cursor-pointer ${
+                                commReferralNeeds === opt.id
+                                  ? "bg-[#5E8B7E]/5 border-[#5E8B7E] text-gov-blue"
+                                  : "border-slate-150 hover:bg-slate-50 text-slate-600"
+                              }`}
+                            >
+                              {opt.label}
+                            </button>
+                          ))}
+                        </div>
                       </div>
-                      <Coffee className="w-5 h-5 mx-auto text-[#5E8B7E]" />
-                      <h5 className="font-extrabold text-[11px] text-[#5E8B7E]">Teaching Cooking Zone</h5>
-                      <p className="text-[10px] text-slate-600 max-w-xs mx-auto">
-                        Modular induction cool-stoves where residents cook recipes with 1:1 supervision
-                      </p>
-                    </div>
 
-                  </div>
+                      {/* Selection 2: Age group & Funding block in grid */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div className="space-y-1.5">
+                          <label className="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider font-mono">
+                            Referral Age Group
+                          </label>
+                          <select
+                            value={commReferralAge}
+                            onChange={(e) => setCommReferralAge(e.target.value)}
+                            className="w-full text-xs font-bold text-gov-blue bg-slate-50 border border-slate-150 rounded-xl px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#5E8B7E]/20"
+                          >
+                            <option value="18-25">Transition Stage (18 - 25 years)</option>
+                            <option value="26-45">Adult Care Level (26 - 45 years)</option>
+                            <option value="46-64">Extended Support Stage (46 - 64 years)</option>
+                            <option value="65+">Elder Complex Needs (65+ years)</option>
+                          </select>
+                        </div>
 
-                  {/* Active Outcomes Activity Box (Nourish tracker) */}
-                  <div className="bg-slate-900 text-white rounded-2xl p-4.5 space-y-3 shadow-md">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <Activity className="w-3.5 h-3.5 text-[#7DB6A3] animate-pulse" />
-                        <span className="text-[10px] font-bold font-mono uppercase tracking-wider text-[#7DB6A3]">Nourish Live Audit</span>
+                        <div className="space-y-1.5">
+                          <label className="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider font-mono">
+                            Funding Authority Model
+                          </label>
+                          <select
+                            value={commReferralFunding}
+                            onChange={(e) => setCommReferralFunding(e.target.value)}
+                            className="w-full text-xs font-bold text-gov-blue bg-slate-50 border border-slate-150 rounded-xl px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#5E8B7E]/20"
+                          >
+                            <option value="chc">100% NHS CHC Funded</option>
+                            <option value="joint">LA & CHC Joint Funded</option>
+                            <option value="la">100% Local Authority Care</option>
+                            <option value="private">Private / Deputy Trusts</option>
+                          </select>
+                        </div>
                       </div>
-                      <span className="text-[9px] text-[#7DB6A3] font-mono">16:47 BST</span>
-                    </div>
 
-                    <div className="space-y-2 text-[10.5px]">
-                      <div className="flex justify-between text-slate-300">
-                        <span>Resident JW Status:</span>
-                        <span className="text-[#7DB6A3] font-mono font-bold">Progressing Fine</span>
+                      {/* Urgency Trigger */}
+                      <div className="space-y-1.5">
+                        <label className="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider font-mono">
+                          Referral Transition Priority
+                        </label>
+                        <div className="flex space-x-1.5 bg-slate-50 p-1 rounded-xl border border-slate-150">
+                          {[
+                            { id: "urgent", label: "Crisis Response" },
+                            { id: "standard", label: "Planned" },
+                            { id: "scoping", label: "Info Scoping" }
+                          ].map((prio) => (
+                            <button
+                              key={prio.id}
+                              type="button"
+                              onClick={() => setCommReferralPriority(prio.id)}
+                              className={`flex-1 py-2 px-2 text-center rounded-lg transition-all cursor-pointer ${
+                                commReferralPriority === prio.id
+                                  ? "bg-slate-950 text-white font-bold text-xs"
+                                  : "text-slate-500 hover:text-slate-800 font-bold text-xs"
+                              }`}
+                            >
+                              <span>{prio.label}</span>
+                            </button>
+                          ))}
+                        </div>
                       </div>
-                      <div className="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
-                        <div className="h-full bg-[#7DB6A3]" style={{ width: "92%" }} />
-                      </div>
-                      <p className="text-[9.5px] text-slate-400 italic">
-                        &ldquo;92% task-independence score achieved: prepared breakfast basket and visual budget folder.&rdquo;
-                      </p>
-                    </div>
-                  </div>
 
-                  {/* Bottom reassurance tags */}
-                  <div className="flex justify-center space-x-4 pt-1 text-[9.5px] font-bold text-slate-400 uppercase font-mono tracking-wider">
-                    <span>• 24/7 NHSmail Line</span>
-                    <span>• Zero Seclusion Goal</span>
-                  </div>
+                      {/* Notes & Security Contact */}
+                      <div className="space-y-4">
+                        <div className="space-y-1.5">
+                          <label className="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider font-mono">
+                            Referral Contact Email
+                          </label>
+                          <div className="relative">
+                            <input
+                              type="email"
+                              required
+                              placeholder="commissioner@localauthority.gov.uk"
+                              value={commReferralEmail}
+                              onChange={(e) => setCommReferralEmail(e.target.value)}
+                              className="w-full text-xs font-semibold text-gov-blue bg-slate-50 border border-slate-150 rounded-xl pl-3 pr-10 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#5E8B7E]/20"
+                            />
+                            <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
+                              <Lock className="w-3.5 h-3.5 text-slate-400" />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="space-y-1.5">
+                          <label className="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider font-mono">
+                            Optional Placement Profile Details
+                          </label>
+                          <textarea
+                            rows={2}
+                            placeholder="Current living situation, challenging behaviors or specific physical requirements..."
+                            value={commReferralNotes}
+                            onChange={(e) => setCommReferralNotes(e.target.value)}
+                            className="w-full text-xs font-medium text-gov-blue bg-slate-50 border border-slate-150 rounded-xl px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#5E8B7E]/20 resize-none"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Action Submission */}
+                      <button
+                        type="button"
+                        disabled={commIsSubmitting}
+                        onClick={() => {
+                          if (!commReferralEmail || !commReferralEmail.includes("@")) {
+                            alert("Please supply a valid contact email to initiate the secure compatibility lock.");
+                            return;
+                          }
+                          setCommIsSubmitting(true);
+                          setTimeout(() => {
+                            setCommIsSubmitting(false);
+                            setCommSubmitSuccess(true);
+                          }, 1400);
+                        }}
+                        className="w-full py-3 bg-gov-blue hover:bg-[#5E8B7E] text-white font-extrabold rounded-xl transition duration-250 flex items-center justify-center space-x-2 text-xs shadow-md active:scale-95 cursor-pointer disabled:opacity-50"
+                      >
+                        {commIsSubmitting ? (
+                          <>
+                            <Clock className="w-4 h-4 animate-spin" />
+                            <span>PROCESSING COMPATIBILITY METRICS...</span>
+                          </>
+                        ) : (
+                          <>
+                            <Send className="w-3.5 h-3.5" />
+                            <span>EVALUATE COMPATIBILITY INDEX</span>
+                          </>
+                        )}
+                      </button>
+
+                      <div className="text-[9.5px] text-slate-400 text-center font-mono">
+                        🔒 Encrypted data compliant with NHS Digital IG & GDPR Requirements
+                      </div>
+
+                    </div>
+                  ) : (
+                    <div className="space-y-6 text-center py-4 animate-fadeIn">
+                      {/* Success Circle Score Indicator */}
+                      <div className="relative w-36 h-36 mx-auto flex items-center justify-center">
+                        <div className="absolute inset-0 rounded-full border-4 border-slate-100" />
+                        <div className="absolute inset-0 rounded-full border-4 border-[#5E8B7E] border-t-transparent animate-pulse" />
+                        <div className="text-center space-y-0.5">
+                          <span className="text-3xl font-black text-gov-blue tracking-tight block">
+                            {commReferralNeeds === "autism-sensory" ? "98.2%" : commReferralNeeds === "challenging-behavior" ? "95.4%" : "96.5%"}
+                          </span>
+                          <span className="text-[8px] text-[#5E8B7E] uppercase font-bold tracking-widest block font-mono">
+                            COMPATIBILITY
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="space-y-1">
+                        <h4 className="text-sm font-black text-[#5E8B7E] uppercase tracking-wide">
+                          Compatibility Locked
+                        </h4>
+                        <p className="text-xs text-slate-500 leading-relaxed max-w-md mx-auto">
+                          The placement lines align with our <strong>6 Flags Environment</strong>. Salman Muhammad's clinical leadership and Boston Murray (Nominated Individual) have been flagged.
+                        </p>
+                      </div>
+
+                      {/* Details Box */}
+                      <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100 text-left space-y-1.5 text-[11px] text-slate-600 max-w-sm mx-auto">
+                        <div className="flex justify-between font-bold border-b border-slate-100 pb-1.5 text-gov-blue">
+                          <span>Referral Metric</span>
+                          <span>Alignment Assessment</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Primary Diagnosis:</span>
+                          <span className="font-extrabold text-gov-blue">Matched to PBS Staff Spec</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Transition Priority:</span>
+                          <span className="font-semibold text-rose-600">{commReferralPriority === "urgent" ? "🚨 Escalated 48h Audit" : "Planned Pathway"}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Funding Model:</span>
+                          <span className="font-semibold text-slate-700">Audit Package Locked</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Secured Destination:</span>
+                          <span className="font-bold text-emerald-700">6 Flags House Priority List</span>
+                        </div>
+                      </div>
+
+                      {/* Action buttons on success */}
+                      <div className="space-y-2.5">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            // Download mockup placement guideline brochure
+                            alert(`The admission checklist and pre-assessment guidelines have been compiled based on your inputs for "${commReferralEmail}". Your download will initiate automatically.`);
+                          }}
+                          className="w-full py-3 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl transition text-xs flex items-center justify-center space-x-2 shadow-sm cursor-pointer"
+                        >
+                          <FileDown className="w-4 h-4 text-premium-gold" />
+                          <span>DOWNLOAD ENCRYPTED PLACEMENT BROCHURE</span>
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setCommSubmitSuccess(false);
+                            setCommReferralNotes("");
+                          }}
+                          className="text-[10px] font-bold text-[#5E8B7E] hover:underline cursor-pointer block mx-auto"
+                        >
+                          Reset Evaluator & Submit Another referral
+                        </button>
+                      </div>
+
+                      <div className="text-[9px] text-slate-450 font-mono">
+                        Logged and routed under secure compliance ticket PRO-LA-{Math.floor(1000 + Math.random() * 9000)}
+                      </div>
+
+                    </div>
+                  )}
 
                 </div>
-
               </div>
 
             </div>
