@@ -315,10 +315,13 @@ export default function Header({ onNavigate, activeSection }: HeaderProps) {
             onClick={() => onNavigate("hero")} 
             className="flex items-center space-x-2.5 cursor-pointer group flex-shrink-0"
           >
-            <div className="w-10 h-10 bg-gov-blue text-white rounded-xl flex items-center justify-center shadow-lg shadow-gov-blue/20 group-hover:bg-calm-blue transition-colors relative overflow-hidden">
-              <ShieldCheck className="w-5.5 h-5.5 z-10" />
-              <div className="absolute inset-x-0 bottom-0 h-1/2 bg-care-green" />
-            </div>
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg overflow-hidden bg-white group-hover:scale-105 transition">
+  <img
+    src="/PRO-CH Logo.png"
+    alt="ProCare Homes"
+    className="w-full h-full object-contain"
+  />
+</div>
             <div>
               <span className="text-xl font-extrabold text-gov-blue tracking-tight block font-sans">
                 PRO <span className="text-care-green">Care Homes</span>
